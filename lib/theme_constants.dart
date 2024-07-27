@@ -18,80 +18,22 @@ const ColorPalette colorPalette = ColorPalette(
   shadow: Color(0xFF212121), // Dark grey for shadows
 );
 
+final material2021 = Typography.material2021().tall;
+
 final AppTypography appTypography = AppTypography(
-  displayLarge: TextStyle(
-    fontSize: 57,
-    fontWeight: FontWeight.normal,
-    color: colorPalette.onSurface,
-  ),
-  displayMedium: TextStyle(
-    fontSize: 45,
-    fontWeight: FontWeight.normal,
-    color: colorPalette.onSurface,
-  ),
-  displaySmall: TextStyle(
-    fontSize: 36,
-    fontWeight: FontWeight.normal,
-    color: colorPalette.onSurface,
-  ),
-  headlineLarge: TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.w500, // Semi-bold for slight emphasis
-    color: colorPalette.onSurface,
-  ),
-  headlineMedium: TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.w500, // Semi-bold for slight emphasis
-    color: colorPalette.onSurface,
-  ),
-  headlineSmall: TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.w500, // Semi-bold for slight emphasis
-    color: colorPalette.onSurface,
-  ),
-  titleLarge: TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.w400, // Normal weight
-    color: colorPalette.onSurface,
-  ),
-  titleMedium: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w400, // Normal weight
-    color: colorPalette.onSurface,
-  ),
-  titleSmall: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w400, // Normal weight
-    color: colorPalette.onSurface,
-  ),
-  bodyLarge: TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-    color: colorPalette.onSurface,
-  ),
-  bodyMedium: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.normal,
-    color: colorPalette.onSurface,
-  ),
-  bodySmall: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.normal,
-    color: colorPalette.onSurface,
-  ),
-  labelLarge: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400, // Normal weight
-    color: colorPalette.onSurface,
-  ),
-  labelMedium: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w400, // Normal weight
-    color: colorPalette.onSurface,
-  ),
-  labelSmall: TextStyle(
-    fontSize: 11,
-    fontWeight: FontWeight.w400, // Normal weight
-    color: colorPalette.onSurface,
-  ),
+  displayLarge: material2021.displayLarge!,
+  displayMedium: material2021.displayMedium!,
+  displaySmall: material2021.displaySmall!,
+  headlineLarge: material2021.headlineLarge!,
+  headlineMedium: material2021.headlineMedium!,
+  headlineSmall: material2021.headlineSmall!,
+  titleLarge: material2021.titleLarge!,
+  titleMedium: material2021.titleMedium!,
+  titleSmall: material2021.titleSmall!,
+  bodyLarge: material2021.bodyLarge!,
+  bodyMedium: material2021.bodyMedium!,
+  bodySmall: material2021.bodySmall!,
+  labelLarge: material2021.labelLarge!,
+  labelMedium: material2021.labelMedium!,
+  labelSmall: material2021.labelSmall!,
 );

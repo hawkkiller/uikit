@@ -15,11 +15,11 @@ enum FilledButtonVariant {
 class UiKitFilledButton extends ButtonStyleButton {
   const UiKitFilledButton._({
     required super.child,
-    required super.onPressed,
+    required VoidCallback? onPressed,
     required this.variant,
     bool enabled = true,
     super.autofocus = false,
-    super.onLongPress,
+    VoidCallback? onLongPress,
     super.onHover,
     super.onFocusChange,
     super.style,
@@ -28,12 +28,16 @@ class UiKitFilledButton extends ButtonStyleButton {
     super.statesController,
     super.isSemanticButton,
     super.key,
-  }) : enabled = (onPressed != null || onLongPress != null) && enabled;
+  }) : super(
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
 
   /// A factory constructor for a primary [UiKitFilledButton].
   factory UiKitFilledButton.primary({
-    required Widget child,
-    required VoidCallback onPressed,
+    required Widget? label,
+    required VoidCallback? onPressed,
+    Widget? icon,
     bool enabled = true,
     bool autofocus = false,
     VoidCallback? onLongPress,
@@ -44,6 +48,7 @@ class UiKitFilledButton extends ButtonStyleButton {
     Clip clipBehavior = Clip.none,
     WidgetStatesController? statesController,
     bool isSemanticButton = true,
+    IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
       UiKitFilledButton._(
@@ -60,13 +65,14 @@ class UiKitFilledButton extends ButtonStyleButton {
         variant: FilledButtonVariant.primary,
         statesController: statesController,
         isSemanticButton: isSemanticButton,
-        child: child,
+        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
       );
 
   /// A factory constructor for a secondary [UiKitFilledButton].
   factory UiKitFilledButton.secondary({
-    required Widget child,
-    required VoidCallback onPressed,
+    required Widget? label,
+    required VoidCallback? onPressed,
+    Widget? icon,
     bool enabled = true,
     bool autofocus = false,
     VoidCallback? onLongPress,
@@ -77,6 +83,7 @@ class UiKitFilledButton extends ButtonStyleButton {
     Clip clipBehavior = Clip.none,
     WidgetStatesController? statesController,
     bool isSemanticButton = true,
+    IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
       UiKitFilledButton._(
@@ -93,20 +100,9 @@ class UiKitFilledButton extends ButtonStyleButton {
         variant: FilledButtonVariant.secondary,
         statesController: statesController,
         isSemanticButton: isSemanticButton,
-        child: child,
+        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
       );
 
-  /// Whether the button is enabled.
-  ///
-  /// This may be set to false in order to disable the button, if
-  /// it is uncomfortable to remove the [onPressed] callback.
-  ///
-  /// When the button is disabled, it will not respond to user input.
-  ///
-  /// Otherwise, the button will be enabled. Setting this to true
-  /// won't enable the button unless the [onPressed] callback is provided.
-  @override
-  final bool enabled;
 
   /// The variant of the button.
   final FilledButtonVariant variant;
@@ -200,10 +196,36 @@ class _UiKitBaseButtonStyle extends ButtonStyle {
   final AppTypography typography;
 
   @override
+  AlignmentGeometry? get alignment => Alignment.center;
+
+  @override
+  Duration? get animationDuration => const Duration(milliseconds: 200);
+
+  @override
+  WidgetStateProperty<OutlinedBorder?>? get shape => const WidgetStatePropertyAll(StadiumBorder());
+
+  @override
+  MaterialTapTargetSize? get tapTargetSize => MaterialTapTargetSize.shrinkWrap;
+
+  @override
+  WidgetStateProperty<EdgeInsetsGeometry?>? get padding => const WidgetStatePropertyAll(
+        EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      );
+
+  @override
+  WidgetStateProperty<Size?>? get minimumSize => const WidgetStatePropertyAll(Size(60, 40));
+
+  @override
+  WidgetStateProperty<Size?>? get maximumSize => const WidgetStatePropertyAll(Size.infinite);
+
+  @override
   WidgetStateProperty<TextStyle?>? get textStyle => WidgetStatePropertyAll(typography.labelLarge);
 
   @override
   WidgetStateProperty<Color>? get shadowColor => WidgetStatePropertyAll<Color>(colorPalette.shadow);
+
+  @override
+  VisualDensity? get visualDensity => VisualDensity.adaptivePlatformDensity;
 
   @override
   WidgetStateProperty<Color>? get surfaceTintColor =>
@@ -253,6 +275,34 @@ class _UiKitBaseButtonStyle extends ButtonStyle {
 
     return child;
   }
+}
+
+class _ButtonIconAndLabel extends StatelessWidget {
+  const _ButtonIconAndLabel({
+    required this.icon,
+    required this.label,
+    required this.iconAlignment,
+  });
+
+  final Widget? icon;
+  final Widget? label;
+  final IconAlignment iconAlignment;
+
+  @override
+  Widget build(BuildContext context) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: iconAlignment == IconAlignment.start
+            ? [
+                if (icon != null) icon!,
+                if (icon != null && label != null) const SizedBox(width: 8),
+                if (label != null) Flexible(child: label!),
+              ]
+            : [
+                if (label != null) Flexible(child: label!),
+                if (icon != null && label != null) const SizedBox(width: 8),
+                if (icon != null) icon!,
+              ],
+      );
 }
 
 class OutlineFocusButtonBorder extends StatelessWidget {

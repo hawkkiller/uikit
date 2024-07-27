@@ -326,6 +326,7 @@ class UiKitText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final typography = Theme.of(context).appTypography;
+    final palette = Theme.of(context).colorPalette;
 
     // Get the text style based on the size
     final style =
@@ -336,7 +337,7 @@ class UiKitText extends StatelessWidget {
       textAlign: textAlign,
       overflow: overflow,
       maxLines: maxLines,
-      style: style.copyWith(color: color),
+      style: style.copyWith(color: color ?? palette.onSurface),
     );
   }
 }
