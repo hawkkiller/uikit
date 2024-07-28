@@ -99,6 +99,16 @@ class WindowSizeScope extends StatefulWidget {
 
   final Widget child;
 
+  /// Returns the [WindowSize] of the nearest [WindowSizeScope] ancestor.
+  static WindowSize of(BuildContext context, {bool listen = true}) {
+    final inherited = listen
+        ? context.dependOnInheritedWidgetOfExactType<InheritedWindowSize>()
+        : context.findAncestorWidgetOfExactType<InheritedWindowSize>();
+
+    return inherited?.windowSize ??
+        (throw FlutterError('WindowSizeScope was not found in the widget tree'));
+  }
+
   @override
   State<WindowSizeScope> createState() => _WindowSizeScopeState();
 }
