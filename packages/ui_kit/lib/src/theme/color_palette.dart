@@ -58,23 +58,40 @@ class ColorPalette {
   /// The color used for shadows.
   final Color shadow;
 
+  /// The color used for focus outlines.
+  Map<String, Color> toMap() => <String, Color>{
+        'primary': primary,
+        'onPrimary': onPrimary,
+        'secondary': secondary,
+        'onSecondary': onSecondary,
+        'tertiary': tertiary,
+        'onTertiary': onTertiary,
+        'error': error,
+        'onError': onError,
+        'surface': surface,
+        'onSurface': onSurface,
+        'outline': outline,
+        'focusOutline': focusOutline,
+        'shadow': shadow,
+      };
+
   /// Creates a copy of this color palette but with the given fields replaced with the new values.
   ColorPalette copyWith({
-      Color? primary,
-      Color? onPrimary,
-      Color? secondary,
-      Color? onSecondary,
-      Color? tertiary,
-      Color? onTertiary,
-      Color? error,
-      Color? onError,
-      Color? background,
-      Color? onBackground,
-      Color? surface,
-      Color? onSurface,
-      Color? outline,
-      Color? focusOutline,
-      Color? shadow,
+    Color? primary,
+    Color? onPrimary,
+    Color? secondary,
+    Color? onSecondary,
+    Color? tertiary,
+    Color? onTertiary,
+    Color? error,
+    Color? onError,
+    Color? background,
+    Color? onBackground,
+    Color? surface,
+    Color? onSurface,
+    Color? outline,
+    Color? focusOutline,
+    Color? shadow,
   }) {
     return ColorPalette(
       primary: primary ?? this.primary,
