@@ -103,7 +103,6 @@ class UiKitFilledButton extends ButtonStyleButton {
         child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
       );
 
-
   /// The variant of the button.
   final FilledButtonVariant variant;
 
@@ -115,6 +114,121 @@ class UiKitFilledButton extends ButtonStyleButton {
     final typography = theme.appTypography;
 
     return _FilledButtonStyle(
+      colorPalette: colorPalette,
+      typography: typography,
+      variant: variant,
+    );
+  }
+
+  @override
+  ButtonStyle? themeStyleOf(BuildContext context) => null;
+}
+
+/// Different variants of a [UiKitOutlinedButton].
+enum OutlinedButtonVariant {
+  primary,
+  secondary,
+}
+
+class UiKitOutlinedButton extends ButtonStyleButton {
+  const UiKitOutlinedButton._({
+    required super.child,
+    required VoidCallback? onPressed,
+    required this.variant,
+    bool enabled = true,
+    super.autofocus = false,
+    VoidCallback? onLongPress,
+    super.onHover,
+    super.onFocusChange,
+    super.style,
+    super.focusNode,
+    super.clipBehavior,
+    super.statesController,
+    super.isSemanticButton,
+    super.key,
+  }) : super(
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
+
+  factory UiKitOutlinedButton.primary({
+    required Widget? label,
+    required VoidCallback? onPressed,
+    Widget? icon,
+    bool enabled = true,
+    bool autofocus = false,
+    VoidCallback? onLongPress,
+    ValueChanged<bool>? onFocusChange,
+    ValueChanged<bool>? onHover,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    Clip clipBehavior = Clip.none,
+    WidgetStatesController? statesController,
+    bool isSemanticButton = true,
+    IconAlignment iconAlignment = IconAlignment.start,
+    Key? key,
+  }) =>
+      UiKitOutlinedButton._(
+        onPressed: onPressed,
+        enabled: enabled,
+        autofocus: autofocus,
+        onLongPress: onLongPress,
+        onFocusChange: onFocusChange,
+        onHover: onHover,
+        style: style,
+        focusNode: focusNode,
+        clipBehavior: clipBehavior,
+        key: key,
+        variant: OutlinedButtonVariant.primary,
+        statesController: statesController,
+        isSemanticButton: isSemanticButton,
+        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
+      );
+
+  factory UiKitOutlinedButton.secondary({
+    required Widget? label,
+    required VoidCallback? onPressed,
+    Widget? icon,
+    bool enabled = true,
+    bool autofocus = false,
+    VoidCallback? onLongPress,
+    ValueChanged<bool>? onFocusChange,
+    ValueChanged<bool>? onHover,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    Clip clipBehavior = Clip.none,
+    WidgetStatesController? statesController,
+    bool isSemanticButton = true,
+    IconAlignment iconAlignment = IconAlignment.start,
+    Key? key,
+  }) =>
+      UiKitOutlinedButton._(
+        onPressed: onPressed,
+        enabled: enabled,
+        autofocus: autofocus,
+        onLongPress: onLongPress,
+        onFocusChange: onFocusChange,
+        onHover: onHover,
+        style: style,
+        focusNode: focusNode,
+        clipBehavior: clipBehavior,
+        key: key,
+        variant: OutlinedButtonVariant.secondary,
+        statesController: statesController,
+        isSemanticButton: isSemanticButton,
+        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
+      );
+
+  final OutlinedButtonVariant variant;
+
+  @override
+  ButtonStyle defaultStyleOf(BuildContext context) {
+    final theme = Theme.of(context);
+
+    final colorPalette = theme.colorPalette;
+    final typography = theme.appTypography;
+
+    return _OutlinedButtonStyle(
       colorPalette: colorPalette,
       typography: typography,
       variant: variant,
@@ -181,6 +295,79 @@ class _FilledButtonStyle extends _UiKitBaseButtonStyle {
         }
         return null;
       });
+}
+
+class _OutlinedButtonStyle extends _UiKitBaseButtonStyle {
+  const _OutlinedButtonStyle({
+    required super.colorPalette,
+    required super.typography,
+    required this.variant,
+  });
+
+  /// The variant of the button.
+  final OutlinedButtonVariant variant;
+
+  @override
+  WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return colorPalette.onSurface.withOpacity(0.38);
+          }
+
+          switch (variant) {
+            case OutlinedButtonVariant.primary:
+              return colorPalette.primary;
+            case OutlinedButtonVariant.secondary:
+              return colorPalette.secondary;
+          }
+        },
+      );
+
+  @override
+  WidgetStateProperty<Color?>? get backgroundColor =>
+      const WidgetStatePropertyAll(Colors.transparent);
+
+  @override
+  WidgetStateProperty<Color?>? get overlayColor =>
+      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        final color = switch (variant) {
+          OutlinedButtonVariant.primary => colorPalette.primary,
+          OutlinedButtonVariant.secondary => colorPalette.secondary,
+        };
+
+        if (states.contains(WidgetState.pressed)) {
+          return color.withOpacity(0.1);
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return color.withOpacity(0.08);
+        }
+        if (states.contains(WidgetState.focused)) {
+          return color.withOpacity(0.1);
+        }
+
+        return null;
+      });
+
+  @override
+  WidgetStateProperty<Color>? get shadowColor =>
+      const WidgetStatePropertyAll<Color>(Colors.transparent);
+
+  @override
+  WidgetStateProperty<Color>? get surfaceTintColor =>
+      const WidgetStatePropertyAll<Color>(Colors.transparent);
+
+  @override
+  WidgetStateProperty<double>? get elevation => const WidgetStatePropertyAll<double>(0.0);
+
+  @override
+  WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStatePropertyAll(
+    StadiumBorder(
+      side: BorderSide(
+        color: colorPalette.outline,
+        width: 1,
+      ),
+    )
+  );
 }
 
 class _UiKitBaseButtonStyle extends ButtonStyle {

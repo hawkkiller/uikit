@@ -29,27 +29,38 @@ class UiKitPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
 
+    OutlinedButton;
+
     return CustomScrollView(
       slivers: [
         SliverPadding(
           padding: EdgeInsets.symmetric(
-            horizontal: math.max((size.width - 1000) / 2, 16),
+            horizontal: math.max((size.width - 900) / 2, 16),
             vertical: 24,
           ),
           sliver: SliverList.list(
             children: [
-              UiKitText.titleMedium('Buttons'),
+              Align(
+                alignment: Alignment.center,
+                child: UiKitText.titleLarge('Buttons'),
+              ),
               const SizedBox(height: 8),
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Wrap(
-                    spacing: 16,
-                    runSpacing: 16,
-                    children: [
-                      _FilledPrimaryButton(),
-                      _FilledSecondaryButton(),
-                    ],
+              const RepaintBoundary(
+                child: Center(
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: [
+                          _FilledPrimaryButton(),
+                          _FilledSecondaryButton(),
+                          _OutlinedPrimaryButton(),
+                          _OutlinedSecondaryButton(),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -61,6 +72,108 @@ class UiKitPreview extends StatelessWidget {
   }
 }
 
+class _OutlinedPrimaryButton extends StatelessWidget {
+  const _OutlinedPrimaryButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UiKitText.titleSmall('Outlined Primary Button'),
+            const SizedBox(height: 16),
+            UiKitOutlinedButton.primary(
+              onPressed: () {},
+              label: const Text('standard'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.primary(
+              icon: const Icon(Icons.add_rounded),
+              onPressed: () {},
+              label: const Text('with icon'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.primary(
+              onPressed: () {},
+              enabled: false,
+              label: const Text('disabled'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.primary(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+              enabled: false,
+              label: const Text('with icon'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.primary(
+              onPressed: () {},
+              enabled: false,
+              label: SizedBox.square(
+                dimension: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Theme.of(context).colorPalette.onSurface.withOpacity(.38),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+class _OutlinedSecondaryButton extends StatelessWidget {
+  const _OutlinedSecondaryButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UiKitText.titleSmall('Outlined Secondary Button'),
+            const SizedBox(height: 16),
+            UiKitOutlinedButton.secondary(
+              onPressed: () {},
+              label: const Text('standard'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.secondary(
+              icon: const Icon(Icons.add_rounded),
+              onPressed: () {},
+              label: const Text('with icon'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.secondary(
+              onPressed: () {},
+              enabled: false,
+              label: const Text('disabled'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.secondary(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+              enabled: false,
+              label: const Text('with icon'),
+            ),
+            const SizedBox(height: 8),
+            UiKitOutlinedButton.secondary(
+              onPressed: () {},
+              enabled: false,
+              label: SizedBox.square(
+                dimension: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Theme.of(context).colorPalette.onSurface.withOpacity(.38),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
 class _FilledSecondaryButton extends StatelessWidget {
   const _FilledSecondaryButton();
 
@@ -70,7 +183,7 @@ class _FilledSecondaryButton extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            UiKitText.titleMedium('Filled Secondary Button'),
+            UiKitText.titleSmall('Filled Secondary Button'),
             const SizedBox(height: 16),
             UiKitFilledButton.secondary(
               onPressed: () {},
@@ -121,7 +234,7 @@ class _FilledPrimaryButton extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            UiKitText.titleMedium('Filled Primary Button'),
+            UiKitText.titleSmall('Filled Primary Button'),
             const SizedBox(height: 16),
             UiKitFilledButton.primary(
               onPressed: () {},
