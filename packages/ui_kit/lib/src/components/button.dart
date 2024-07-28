@@ -11,6 +11,27 @@ enum FilledButtonVariant {
   secondary;
 }
 
+/// Different variants of a [UiKitOutlinedButton].
+enum OutlinedButtonVariant {
+  /// A button for primary actions in the app.
+  primary,
+
+  /// A button for alternative actions in the app.
+  secondary,
+}
+
+/// The variant of an [UiKitIconButton].
+enum IconButtonVariant {
+  /// A button that is filled with color.
+  filled,
+
+  /// A button that is outlined.
+  outlined,
+
+  /// A button that does not have a background nor an outline.
+  standard,
+}
+
 /// A filled button that follows the UI Kit design system.
 class UiKitFilledButton extends ButtonStyleButton {
   const UiKitFilledButton._({
@@ -124,12 +145,6 @@ class UiKitFilledButton extends ButtonStyleButton {
   ButtonStyle? themeStyleOf(BuildContext context) => null;
 }
 
-/// Different variants of a [UiKitOutlinedButton].
-enum OutlinedButtonVariant {
-  primary,
-  secondary,
-}
-
 class UiKitOutlinedButton extends ButtonStyleButton {
   const UiKitOutlinedButton._({
     required super.child,
@@ -239,6 +254,225 @@ class UiKitOutlinedButton extends ButtonStyleButton {
   ButtonStyle? themeStyleOf(BuildContext context) => null;
 }
 
+class UiKitIconButton extends ButtonStyleButton {
+  const UiKitIconButton._({
+    required super.child,
+    required this.variant,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    super.autofocus = false,
+    VoidCallback? onLongPress,
+    super.onHover,
+    super.onFocusChange,
+    super.style,
+    super.focusNode,
+    super.clipBehavior,
+    super.statesController,
+    super.isSemanticButton,
+    super.key,
+  }) : super(
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
+
+  factory UiKitIconButton.filled({
+    required Widget icon,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    bool autofocus = false,
+    VoidCallback? onLongPress,
+    ValueChanged<bool>? onFocusChange,
+    ValueChanged<bool>? onHover,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    Clip clipBehavior = Clip.none,
+    WidgetStatesController? statesController,
+    bool isSemanticButton = true,
+    Key? key,
+  }) =>
+      UiKitIconButton._(
+        onPressed: onPressed,
+        enabled: enabled,
+        autofocus: autofocus,
+        onLongPress: onLongPress,
+        onFocusChange: onFocusChange,
+        onHover: onHover,
+        style: style,
+        focusNode: focusNode,
+        clipBehavior: clipBehavior,
+        key: key,
+        variant: IconButtonVariant.filled,
+        statesController: statesController,
+        isSemanticButton: isSemanticButton,
+        child: icon,
+      );
+
+  factory UiKitIconButton.outlined({
+    required Widget icon,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    bool autofocus = false,
+    VoidCallback? onLongPress,
+    ValueChanged<bool>? onFocusChange,
+    ValueChanged<bool>? onHover,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    Clip clipBehavior = Clip.none,
+    WidgetStatesController? statesController,
+    bool isSemanticButton = true,
+    Key? key,
+  }) =>
+      UiKitIconButton._(
+        onPressed: onPressed,
+        enabled: enabled,
+        autofocus: autofocus,
+        onLongPress: onLongPress,
+        onFocusChange: onFocusChange,
+        onHover: onHover,
+        style: style,
+        focusNode: focusNode,
+        clipBehavior: clipBehavior,
+        key: key,
+        variant: IconButtonVariant.outlined,
+        statesController: statesController,
+        isSemanticButton: isSemanticButton,
+        child: icon,
+      );
+
+  factory UiKitIconButton.standard({
+    required Widget icon,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    bool autofocus = false,
+    VoidCallback? onLongPress,
+    ValueChanged<bool>? onFocusChange,
+    ValueChanged<bool>? onHover,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    Clip clipBehavior = Clip.none,
+    WidgetStatesController? statesController,
+    bool isSemanticButton = true,
+    Key? key,
+  }) =>
+      UiKitIconButton._(
+        onPressed: onPressed,
+        enabled: enabled,
+        autofocus: autofocus,
+        onLongPress: onLongPress,
+        onFocusChange: onFocusChange,
+        onHover: onHover,
+        style: style,
+        focusNode: focusNode,
+        clipBehavior: clipBehavior,
+        key: key,
+        variant: IconButtonVariant.standard,
+        statesController: statesController,
+        isSemanticButton: isSemanticButton,
+        child: icon,
+      );
+
+  final IconButtonVariant variant;
+
+  @override
+  ButtonStyle defaultStyleOf(BuildContext context) {
+    final theme = Theme.of(context);
+
+    final colorPalette = theme.colorPalette;
+    final typography = theme.appTypography;
+
+    switch (variant) {
+      case IconButtonVariant.filled:
+        return _IconButtonFilledStyle(
+          colorPalette: colorPalette,
+          typography: typography,
+        );
+      case IconButtonVariant.outlined:
+        return _IconButtonOutlinedStyle(
+          colorPalette: colorPalette,
+          typography: typography,
+        );
+      case IconButtonVariant.standard:
+        return _IconButtonBaseStyle(
+          colorPalette: colorPalette,
+          typography: typography,
+        );
+    }
+  }
+
+  @override
+  ButtonStyle? themeStyleOf(BuildContext context) => null;
+}
+
+class UiKitTextButton extends ButtonStyleButton {
+  const UiKitTextButton._({
+    required super.child,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    super.autofocus = false,
+    VoidCallback? onLongPress,
+    super.onHover,
+    super.onFocusChange,
+    super.style,
+    super.focusNode,
+    super.clipBehavior,
+    super.statesController,
+    super.isSemanticButton,
+    super.key,
+  }) : super(
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
+
+  factory UiKitTextButton({
+    required Widget? label,
+    required VoidCallback? onPressed,
+    Widget? icon,
+    bool enabled = true,
+    bool autofocus = false,
+    VoidCallback? onLongPress,
+    ValueChanged<bool>? onFocusChange,
+    ValueChanged<bool>? onHover,
+    ButtonStyle? style,
+    FocusNode? focusNode,
+    Clip clipBehavior = Clip.none,
+    WidgetStatesController? statesController,
+    bool isSemanticButton = true,
+    IconAlignment iconAlignment = IconAlignment.start,
+    Key? key,
+  }) =>
+      UiKitTextButton._(
+        onPressed: onPressed,
+        enabled: enabled,
+        autofocus: autofocus,
+        onLongPress: onLongPress,
+        onFocusChange: onFocusChange,
+        onHover: onHover,
+        style: style,
+        focusNode: focusNode,
+        clipBehavior: clipBehavior,
+        key: key,
+        statesController: statesController,
+        isSemanticButton: isSemanticButton,
+        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
+      );
+
+  @override
+  ButtonStyle defaultStyleOf(BuildContext context) {
+    final theme = Theme.of(context);
+
+    final colorPalette = theme.colorPalette;
+    final typography = theme.appTypography;
+
+    return _TextButtonStyle(
+      colorPalette: colorPalette,
+      typography: typography,
+    );
+  }
+
+  @override
+  ButtonStyle? themeStyleOf(BuildContext context) => null;
+}
+
 class _FilledButtonStyle extends _UiKitBaseButtonStyle {
   const _FilledButtonStyle({
     required super.colorPalette,
@@ -295,6 +529,27 @@ class _FilledButtonStyle extends _UiKitBaseButtonStyle {
         }
         return null;
       });
+
+  @override
+  WidgetStateProperty<double>? get elevation =>
+      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
+          return 0.0;
+        }
+        if (states.contains(WidgetState.pressed)) {
+          return 0.0;
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return 1.0;
+        }
+        if (states.contains(WidgetState.focused)) {
+          return 0.0;
+        }
+        return 0.0;
+      });
+
+  @override
+  WidgetStateProperty<Color>? get shadowColor => WidgetStatePropertyAll<Color>(colorPalette.shadow);
 }
 
 class _OutlinedButtonStyle extends _UiKitBaseButtonStyle {
@@ -349,25 +604,217 @@ class _OutlinedButtonStyle extends _UiKitBaseButtonStyle {
       });
 
   @override
-  WidgetStateProperty<Color>? get shadowColor =>
-      const WidgetStatePropertyAll<Color>(Colors.transparent);
+  WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return StadiumBorder(
+              side: BorderSide(color: colorPalette.onSurface.withOpacity(0.12), width: 1),
+            );
+          }
+
+          final color = switch (variant) {
+            OutlinedButtonVariant.primary => colorPalette.primary,
+            OutlinedButtonVariant.secondary => colorPalette.secondary,
+          };
+
+          return StadiumBorder(
+            side: BorderSide(color: color, width: 1),
+          );
+        },
+      );
+}
+
+class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
+  const _IconButtonOutlinedStyle({
+    required super.colorPalette,
+    required super.typography,
+  });
 
   @override
-  WidgetStateProperty<Color>? get surfaceTintColor =>
-      const WidgetStatePropertyAll<Color>(Colors.transparent);
+  WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return Colors.transparent;
+          }
+
+          return Colors.transparent;
+        },
+      );
 
   @override
-  WidgetStateProperty<double>? get elevation => const WidgetStatePropertyAll<double>(0.0);
+  WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return colorPalette.onSurface.withOpacity(0.38);
+          }
+
+          return colorPalette.onSurface;
+        },
+      );
+
+  @override
+  WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return colorPalette.onSurface.withOpacity(0.1);
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return colorPalette.onSurface.withOpacity(0.08);
+          }
+          if (states.contains(WidgetState.focused)) {
+            return colorPalette.onSurface.withOpacity(0.1);
+          }
+
+          return null;
+        },
+      );
 
   @override
   WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStatePropertyAll(
-    StadiumBorder(
-      side: BorderSide(
-        color: colorPalette.outline,
-        width: 1,
-      ),
-    )
-  );
+        StadiumBorder(
+          side: BorderSide(
+            color: colorPalette.outline,
+            width: 1,
+          ),
+        ),
+      );
+}
+
+class _IconButtonFilledStyle extends _IconButtonBaseStyle {
+  const _IconButtonFilledStyle({
+    required super.colorPalette,
+    required super.typography,
+  });
+
+  @override
+  WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return colorPalette.onSurface.withOpacity(0.12);
+          }
+          if (states.contains(WidgetState.selected)) {
+            return colorPalette.primary;
+          }
+
+          return colorPalette.primary;
+        },
+      );
+
+  @override
+  WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return colorPalette.onSurface.withOpacity(0.38);
+          }
+          if (states.contains(WidgetState.selected)) {
+            return colorPalette.onPrimary;
+          }
+
+          return colorPalette.onPrimary;
+        },
+      );
+
+  @override
+  WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return colorPalette.onPrimary.withOpacity(0.1);
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return colorPalette.onPrimary.withOpacity(0.08);
+          }
+          if (states.contains(WidgetState.focused)) {
+            return colorPalette.onPrimary.withOpacity(0.1);
+          }
+
+          return null;
+        },
+      );
+}
+
+class _IconButtonBaseStyle extends _UiKitBaseButtonStyle {
+  const _IconButtonBaseStyle({
+    required super.colorPalette,
+    required super.typography,
+  });
+
+  @override
+  WidgetStateProperty<Color?>? get backgroundColor =>
+      const WidgetStatePropertyAll(Colors.transparent);
+
+  @override
+  WidgetStateProperty<Color?>? get foregroundColor =>
+      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        if (states.contains(WidgetState.disabled)) {
+          return colorPalette.onSurface.withOpacity(0.38);
+        }
+
+        return colorPalette.onSurface;
+      });
+
+  @override
+  WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return colorPalette.onSurface.withOpacity(0.1);
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return colorPalette.onSurface.withOpacity(0.08);
+          }
+          if (states.contains(WidgetState.focused)) {
+            return colorPalette.onSurface.withOpacity(0.1);
+          }
+          return null;
+        },
+      );
+
+  @override
+  WidgetStateProperty<EdgeInsetsGeometry>? get padding =>
+      const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.all(8.0));
+
+  @override
+  WidgetStateProperty<Size>? get minimumSize => const WidgetStatePropertyAll<Size>(Size.square(40));
+
+  @override
+  WidgetStateProperty<double>? get iconSize => const WidgetStatePropertyAll<double>(24.0);
+}
+
+class _TextButtonStyle extends _UiKitBaseButtonStyle {
+  const _TextButtonStyle({
+    required super.colorPalette,
+    required super.typography,
+  });
+
+  @override
+  WidgetStateProperty<Color?>? get backgroundColor =>
+      const WidgetStatePropertyAll(Colors.transparent);
+
+  @override
+  WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.disabled)) {
+            return colorPalette.onSurface.withOpacity(0.38);
+          }
+
+          return colorPalette.primary;
+        },
+      );
+
+  @override
+  WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
+        (Set<WidgetState> states) {
+          if (states.contains(WidgetState.pressed)) {
+            return colorPalette.primary.withOpacity(0.1);
+          }
+          if (states.contains(WidgetState.hovered)) {
+            return colorPalette.primary.withOpacity(0.08);
+          }
+          if (states.contains(WidgetState.focused)) {
+            return colorPalette.primary.withOpacity(0.1);
+          }
+          return null;
+        },
+      );
 }
 
 class _UiKitBaseButtonStyle extends ButtonStyle {
@@ -409,7 +856,8 @@ class _UiKitBaseButtonStyle extends ButtonStyle {
   WidgetStateProperty<TextStyle?>? get textStyle => WidgetStatePropertyAll(typography.labelLarge);
 
   @override
-  WidgetStateProperty<Color>? get shadowColor => WidgetStatePropertyAll<Color>(colorPalette.shadow);
+  WidgetStateProperty<Color>? get shadowColor =>
+      const WidgetStatePropertyAll<Color>(Colors.transparent);
 
   @override
   VisualDensity? get visualDensity => VisualDensity.adaptivePlatformDensity;
@@ -417,6 +865,9 @@ class _UiKitBaseButtonStyle extends ButtonStyle {
   @override
   WidgetStateProperty<Color>? get surfaceTintColor =>
       const WidgetStatePropertyAll<Color>(Colors.transparent);
+
+  @override
+  WidgetStateProperty<double?>? get elevation => const WidgetStatePropertyAll(0);
 
   @override
   WidgetStateProperty<MouseCursor?>? get mouseCursor =>
@@ -428,22 +879,7 @@ class _UiKitBaseButtonStyle extends ButtonStyle {
       });
 
   @override
-  WidgetStateProperty<double>? get elevation =>
-      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return 0.0;
-        }
-        if (states.contains(WidgetState.pressed)) {
-          return 0.0;
-        }
-        if (states.contains(WidgetState.hovered)) {
-          return 1.0;
-        }
-        if (states.contains(WidgetState.focused)) {
-          return 0.0;
-        }
-        return 0.0;
-      });
+  WidgetStateProperty<double>? get iconSize => const WidgetStatePropertyAll<double>(18.0);
 
   @override
   ButtonLayerBuilder? get backgroundBuilder => _backgroundBuilder;

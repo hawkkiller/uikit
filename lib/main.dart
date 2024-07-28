@@ -2,6 +2,8 @@ import 'package:ui_kit/ui_kit.dart';
 import 'package:uikit/theme_constants.dart';
 import 'dart:math' as math;
 
+final themeModeSwitcher = ValueNotifier(ThemeMode.system);
+
 void main() {
   runApp(const MainApp());
 }
@@ -11,13 +13,27 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: createThemeData(
-        brightness: Brightness.light,
-        palette: colorPalette,
-        typography: appTypography,
+    final lightPalette = createPaletteFor(brightness: Brightness.light);
+    final darkPalette = createPaletteFor(brightness: Brightness.dark);
+    final appTypography = createTypographyFor();
+
+    return ValueListenableBuilder(
+      valueListenable: themeModeSwitcher,
+      builder: (context, value, _) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: value,
+        theme: createThemeData(
+          brightness: Brightness.light,
+          palette: lightPalette,
+          typography: appTypography,
+        ),
+        darkTheme: createThemeData(
+          brightness: Brightness.dark,
+          palette: darkPalette,
+          typography: appTypography,
+        ),
+        home: const Scaffold(body: UiKitPreview()),
       ),
-      home: const Scaffold(body: UiKitPreview()),
     );
   }
 }
@@ -29,10 +45,22 @@ class UiKitPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
 
-    OutlinedButton;
-
     return CustomScrollView(
       slivers: [
+        SliverAppBar(
+          pinned: true,
+          actions: [
+            UiKitIconButton.standard(
+              icon: themeModeSwitcher.value == ThemeMode.light
+                  ? const Icon(Icons.dark_mode_rounded)
+                  : const Icon(Icons.light_mode_rounded),
+              onPressed: () {
+                themeModeSwitcher.value =
+                    themeModeSwitcher.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+              },
+            ),
+          ],
+        ),
         SliverPadding(
           padding: EdgeInsets.symmetric(
             horizontal: math.max((size.width - 900) / 2, 16),
@@ -45,10 +73,11 @@ class UiKitPreview extends StatelessWidget {
                 child: UiKitText.titleLarge('Buttons'),
               ),
               const SizedBox(height: 8),
-              const RepaintBoundary(
+              RepaintBoundary(
                 child: Center(
                   child: Card(
-                    child: Padding(
+                    color: Theme.of(context).colorPalette.surface,
+                    child: const Padding(
                       padding: EdgeInsets.all(16),
                       child: Wrap(
                         spacing: 16,
@@ -58,6 +87,10 @@ class UiKitPreview extends StatelessWidget {
                           _FilledSecondaryButton(),
                           _OutlinedPrimaryButton(),
                           _OutlinedSecondaryButton(),
+                          _FilledIconButton(),
+                          _OutlinedIconButton(),
+                          _StandardIconButton(),
+                          _TextButton(),
                         ],
                       ),
                     ),
@@ -70,6 +103,106 @@ class UiKitPreview extends StatelessWidget {
       ],
     );
   }
+}
+
+class _TextButton extends StatelessWidget {
+  const _TextButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          children: [
+            UiKitText.titleSmall('Text Button'),
+            const SizedBox(height: 16),
+            UiKitTextButton(
+              onPressed: () {},
+              label: const Text('standard'),
+            ),
+            const SizedBox(height: 8),
+            UiKitTextButton(
+              onPressed: () {},
+              label: const Text('disabled'),
+              enabled: false,
+            ),
+          ],
+        ),
+      );
+}
+
+class _FilledIconButton extends StatelessWidget {
+  const _FilledIconButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          children: [
+            UiKitText.titleSmall('Filled Icon Button'),
+            const SizedBox(height: 16),
+            UiKitIconButton.filled(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+            ),
+            const SizedBox(height: 8),
+            UiKitIconButton.filled(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+              enabled: false,
+            ),
+          ],
+        ),
+      );
+}
+
+class _OutlinedIconButton extends StatelessWidget {
+  const _OutlinedIconButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          children: [
+            UiKitText.titleSmall('Outlined Icon Button'),
+            const SizedBox(height: 16),
+            UiKitIconButton.outlined(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+            ),
+            const SizedBox(height: 8),
+            UiKitIconButton.outlined(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+              enabled: false,
+            ),
+          ],
+        ),
+      );
+}
+
+class _StandardIconButton extends StatelessWidget {
+  const _StandardIconButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          children: [
+            UiKitText.titleSmall('Standard Icon Button'),
+            const SizedBox(height: 16),
+            UiKitIconButton.standard(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+            ),
+            const SizedBox(height: 8),
+            UiKitIconButton.standard(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+              enabled: false,
+            ),
+          ],
+        ),
+      );
 }
 
 class _OutlinedPrimaryButton extends StatelessWidget {

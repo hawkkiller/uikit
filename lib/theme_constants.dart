@@ -1,23 +1,37 @@
 import 'package:ui_kit/ui_kit.dart';
 
-const ColorPalette colorPalette = ColorPalette(
-  primary: Color(0xFF212121), // A dark grey color
-  onPrimary: Color(0xFFFFFFFF), // White
-  secondary: Color(0xFF424242), // A lighter grey
-  onSecondary: Color(0xFFFFFFFF), // White
-  tertiary: Color(0xFF616161), // An even lighter grey
-  onTertiary: Color(0xFFFFFFFF), // White
-  error: Color(0xFFB71C1C), // Red for errors
-  onError: Color(0xFFFFFFFF), // White
-  background: Color(0xFFE0E0E0), // Very light grey
-  onBackground: Color(0xFF212121), // Dark grey for text on background
-  surface: Color(0xFFBDBDBD), // Light grey
-  onSurface: Color(0xFF212121), // Dark grey for text on surfaces
-  outline: Color(0xFF9E9E9E), // Light grey for outlines
-  focusOutline: Color(0xFF616161), // Lighter grey for focus outlines
-  shadow: Color(0xFF212121), // Dark grey for shadows
-);
+ColorPalette createPaletteFor({
+  Brightness brightness = Brightness.light,
+}) {
+  final materialColorScheme = ColorScheme.fromSeed(
+    seedColor: Color(0xFF9EBC9F),
+    brightness: brightness,
+  );
 
+  return ColorPalette(
+    primary: materialColorScheme.primary,
+    onPrimary: materialColorScheme.onPrimary,
+    secondary: materialColorScheme.secondary,
+    onSecondary: materialColorScheme.onSecondary,
+    tertiary: materialColorScheme.tertiary,
+    onTertiary: materialColorScheme.onTertiary,
+    error: materialColorScheme.error,
+    onError: materialColorScheme.onError,
+    surface: materialColorScheme.surface,
+    onSurface: materialColorScheme.onSurface,
+    outline: materialColorScheme.outline,
+    focusOutline: const Color(0xFF0075C4),
+    shadow: materialColorScheme.shadow,
+  );
+}
+
+AppTypography createTypographyFor({
+  Brightness brightness = Brightness.light,
+}) {
+  return appTypography;
+}
+
+// use default styles from material2021
 final material2021 = Typography.material2021().tall;
 
 final AppTypography appTypography = AppTypography(

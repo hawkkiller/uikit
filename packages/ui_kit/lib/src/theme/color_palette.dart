@@ -12,8 +12,6 @@ class ColorPalette {
     required this.onTertiary,
     required this.error,
     required this.onError,
-    required this.background,
-    required this.onBackground,
     required this.surface,
     required this.onSurface,
     required this.outline,
@@ -44,12 +42,6 @@ class ColorPalette {
 
   /// The color used for text and icons displayed on top of the error color.
   final Color onError;
-
-  /// The background color of the app.
-  final Color background;
-
-  /// The color used for text and icons displayed on top of the background color.
-  final Color onBackground;
 
   /// The color of surfaces, such as cards or sheets.
   final Color surface;
@@ -93,8 +85,6 @@ class ColorPalette {
       onTertiary: onTertiary ?? this.onTertiary,
       error: error ?? this.error,
       onError: onError ?? this.onError,
-      background: background ?? this.background,
-      onBackground: onBackground ?? this.onBackground,
       surface: surface ?? this.surface,
       onSurface: onSurface ?? this.onSurface,
       outline: outline ?? this.outline,
@@ -113,8 +103,6 @@ class ColorPalette {
         onTertiary: Color.lerp(a.onTertiary, b.onTertiary, t)!,
         error: Color.lerp(a.error, b.error, t)!,
         onError: Color.lerp(a.onError, b.onError, t)!,
-        background: Color.lerp(a.background, b.background, t)!,
-        onBackground: Color.lerp(a.onBackground, b.onBackground, t)!,
         surface: Color.lerp(a.surface, b.surface, t)!,
         onSurface: Color.lerp(a.onSurface, b.onSurface, t)!,
         outline: Color.lerp(a.outline, b.outline, t)!,
