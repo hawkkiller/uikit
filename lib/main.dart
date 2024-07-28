@@ -20,26 +20,26 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: themeModeSwitcher,
-      builder: (context, value, _) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: value,
-        theme: createThemeData(
-          brightness: Brightness.light,
-          palette: lightPalette,
-          typography: appTypography,
+  Widget build(BuildContext context) => WindowSizeScope(
+        child: ValueListenableBuilder(
+          valueListenable: themeModeSwitcher,
+          builder: (context, value, _) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            themeMode: value,
+            theme: createThemeData(
+              brightness: Brightness.light,
+              palette: lightPalette,
+              typography: appTypography,
+            ),
+            darkTheme: createThemeData(
+              brightness: Brightness.dark,
+              palette: darkPalette,
+              typography: appTypography,
+            ),
+            home: const Scaffold(body: UiKitPreview()),
+          ),
         ),
-        darkTheme: createThemeData(
-          brightness: Brightness.dark,
-          palette: darkPalette,
-          typography: appTypography,
-        ),
-        home: const Scaffold(body: UiKitPreview()),
-      ),
-    );
-  }
+      );
 }
 
 class UiKitPreview extends StatelessWidget {
