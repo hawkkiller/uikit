@@ -1,4 +1,3 @@
-
 import 'package:ui_kit/ui_kit.dart';
 
 class ButtonsPreview extends StatelessWidget {
@@ -9,25 +8,21 @@ class ButtonsPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: Center(
-        child: Card(
-          color: Theme.of(context).colorPalette.surface,
-          child: const Padding(
-            padding: EdgeInsets.all(16),
-            child: Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              children: [
-                _FilledPrimaryButton(),
-                _FilledSecondaryButton(),
-                _OutlinedPrimaryButton(),
-                _OutlinedSecondaryButton(),
-                _FilledIconButton(),
-                _OutlinedIconButton(),
-                _StandardIconButton(),
-                _TextButton(),
-              ],
-            ),
+      child: Card(
+        color: Theme.of(context).colorPalette.surface,
+        child: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            children: [
+              _FilledPrimaryButton(),
+              _FilledSecondaryButton(),
+              _OutlinedPrimaryButton(),
+              _OutlinedSecondaryButton(),
+              _IconButtons(),
+              _TextButton(),
+            ],
           ),
         ),
       ),
@@ -60,15 +55,15 @@ class _TextButton extends StatelessWidget {
       );
 }
 
-class _FilledIconButton extends StatelessWidget {
-  const _FilledIconButton();
+class _IconButtons extends StatelessWidget {
+  const _IconButtons();
 
   @override
   Widget build(BuildContext context) => SizedBox(
         width: 200,
         child: Column(
           children: [
-            UiKitText.titleSmall('Filled Icon Button'),
+            UiKitText.titleSmall('Icon Buttons'),
             const SizedBox(height: 16),
             UiKitIconButton.filled(
               onPressed: () {},
@@ -80,21 +75,7 @@ class _FilledIconButton extends StatelessWidget {
               icon: const Icon(Icons.add_rounded),
               enabled: false,
             ),
-          ],
-        ),
-      );
-}
-
-class _OutlinedIconButton extends StatelessWidget {
-  const _OutlinedIconButton();
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 200,
-        child: Column(
-          children: [
-            UiKitText.titleSmall('Outlined Icon Button'),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             UiKitIconButton.outlined(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
@@ -105,21 +86,7 @@ class _OutlinedIconButton extends StatelessWidget {
               icon: const Icon(Icons.add_rounded),
               enabled: false,
             ),
-          ],
-        ),
-      );
-}
-
-class _StandardIconButton extends StatelessWidget {
-  const _StandardIconButton();
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 200,
-        child: Column(
-          children: [
-            UiKitText.titleSmall('Standard Icon Button'),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             UiKitIconButton.standard(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),

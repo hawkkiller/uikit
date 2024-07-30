@@ -13,5 +13,8 @@ export 'src/theme/theme_data.dart';
 export 'src/components/button.dart';
 export 'src/components/text.dart';
 
+/* Animations */
+export 'src/animations/animations.dart';
+
 /* Layout */
 export 'src/layout/window_size.dart';

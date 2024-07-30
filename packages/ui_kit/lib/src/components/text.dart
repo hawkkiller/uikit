@@ -9,8 +9,8 @@ class UiKitText extends StatelessWidget {
     this.textAlign,
     this.overflow,
     this.maxLines,
-    _UiKitTextSize? size,
-  }) : _size = size;
+    TextStyle? Function(AppTypography)? styleBuilder,
+  }) : _styleBuilder = styleBuilder;
 
   /// Creates a [UiKitText] widget with a large display size.
   factory UiKitText.displayLarge(
@@ -28,7 +28,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.displayLarge,
+        styleBuilder: (typography) => typography.displayLarge,
       );
 
   /// Creates a [UiKitText] widget with a medium display size.
@@ -47,7 +47,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.displayMedium,
+        styleBuilder: (typography) => typography.displayMedium,
       );
 
   /// Creates a [UiKitText] widget with a small display size.
@@ -66,7 +66,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.displaySmall,
+        styleBuilder: (typography) => typography.displaySmall,
       );
 
   /// Creates a [UiKitText] widget with a large headline size.
@@ -85,7 +85,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.headlineLarge,
+        styleBuilder: (typography) => typography.headlineLarge,
       );
 
   /// Creates a [UiKitText] widget with a medium headline size.
@@ -104,7 +104,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.headlineMedium,
+        styleBuilder: (typography) => typography.headlineMedium,
       );
 
   /// Creates a [UiKitText] widget with a small headline size.
@@ -123,7 +123,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.headlineSmall,
+        styleBuilder: (typography) => typography.headlineSmall,
       );
 
   /// Creates a [UiKitText] widget with a large title size.
@@ -142,7 +142,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.titleLarge,
+        styleBuilder: (typography) => typography.titleLarge,
       );
 
   /// Creates a [UiKitText] widget with a medium title size.
@@ -161,7 +161,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.titleMedium,
+        styleBuilder: (typography) => typography.titleMedium,
       );
 
   /// Creates a [UiKitText] widget with a small title size.
@@ -180,7 +180,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.titleSmall,
+        styleBuilder: (typography) => typography.titleSmall,
       );
 
   /// Creates a [UiKitText] widget with a large body size.
@@ -199,7 +199,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.bodyLarge,
+        styleBuilder: (typography) => typography.bodyLarge,
       );
 
   /// Creates a [UiKitText] widget with a medium body size.
@@ -218,7 +218,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.bodyMedium,
+        styleBuilder: (typography) => typography.bodyLarge,
       );
 
   /// Creates a [UiKitText] widget with a small body size.
@@ -237,7 +237,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.bodySmall,
+        styleBuilder: (typography) => typography.bodyLarge,
       );
 
   /// Creates a [UiKitText] widget with a large label size.
@@ -256,7 +256,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.labelLarge,
+        styleBuilder: (typography) => typography.bodyLarge,
       );
 
   /// Creates a [UiKitText] widget with a medium label size.
@@ -275,7 +275,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.labelMedium,
+        styleBuilder: (typography) => typography.bodyLarge,
       );
 
   /// Creates a [UiKitText] widget with a small label size.
@@ -294,7 +294,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        size: _UiKitTextSize.labelSmall,
+        styleBuilder: (typography) => typography.bodyLarge,
       );
 
   final String content;
@@ -303,25 +303,7 @@ class UiKitText extends StatelessWidget {
   final TextOverflow? overflow;
   final int? maxLines;
   final Color? color;
-  final _UiKitTextSize? _size;
-
-  TextStyle _getTextStyle(AppTypography typography, _UiKitTextSize size) => switch (size) {
-        _UiKitTextSize.displayLarge => typography.displayLarge,
-        _UiKitTextSize.displayMedium => typography.displayMedium,
-        _UiKitTextSize.displaySmall => typography.displaySmall,
-        _UiKitTextSize.headlineLarge => typography.headlineLarge,
-        _UiKitTextSize.headlineMedium => typography.headlineMedium,
-        _UiKitTextSize.headlineSmall => typography.headlineSmall,
-        _UiKitTextSize.titleLarge => typography.titleLarge,
-        _UiKitTextSize.titleMedium => typography.titleMedium,
-        _UiKitTextSize.titleSmall => typography.titleSmall,
-        _UiKitTextSize.bodyLarge => typography.bodyLarge,
-        _UiKitTextSize.bodyMedium => typography.bodyMedium,
-        _UiKitTextSize.bodySmall => typography.bodySmall,
-        _UiKitTextSize.labelLarge => typography.labelLarge,
-        _UiKitTextSize.labelMedium => typography.labelMedium,
-        _UiKitTextSize.labelSmall => typography.labelSmall,
-      };
+  final TextStyle? Function(AppTypography)? _styleBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -329,8 +311,7 @@ class UiKitText extends StatelessWidget {
     final palette = Theme.of(context).colorPalette;
 
     // Get the text style based on the size
-    final style =
-        _size != null ? _getTextStyle(typography, _size) : this.style ?? typography.bodyLarge;
+    final style = _styleBuilder?.call(typography) ?? typography.bodyLarge;
 
     return Text(
       content,
@@ -340,23 +321,4 @@ class UiKitText extends StatelessWidget {
       style: style.copyWith(color: color ?? palette.onSurface),
     );
   }
-}
-
-// Enum to define different text sizes
-enum _UiKitTextSize {
-  displayLarge,
-  displayMedium,
-  displaySmall,
-  headlineLarge,
-  headlineMedium,
-  headlineSmall,
-  titleLarge,
-  titleMedium,
-  titleSmall,
-  bodyLarge,
-  bodyMedium,
-  bodySmall,
-  labelLarge,
-  labelMedium,
-  labelSmall,
 }

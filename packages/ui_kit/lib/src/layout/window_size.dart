@@ -58,15 +58,15 @@ enum WindowSize {
 
   /// Returns whether the given width isless than
   /// the minimum width of the breakpoint.
-  bool operator <(WindowSize other) => max < other.min;
+  bool operator <(WindowSize other) => min < other.min;
 
   /// Returns whether the given width is greater than
   /// the maximum width of the breakpoint.
-  bool operator >(WindowSize other) => min > other.max;
+  bool operator >(WindowSize other) => min > other.min;
 
   /// Returns whether the given width is less than
   /// or equal to the maximum width of the breakpoint.
-  bool operator <=(WindowSize other) => max <= other.max;
+  bool operator <=(WindowSize other) => min <= other.min;
 
   /// Returns whether the given width is greater than
   /// or equal to the minimum width of the breakpoint.
@@ -75,17 +75,32 @@ enum WindowSize {
   /// If the breakpoint is compact.
   bool get isCompact => this == WindowSize.compact;
 
+  /// If the breakpoint is compact or larger.
+  bool get isCompactUp => this >= WindowSize.compact;
+
   /// If the breakpoint is medium.
   bool get isMedium => this == WindowSize.medium;
+
+  /// If the breakpoint is medium or larger.
+  bool get isMediumUp => this >= WindowSize.medium;
 
   /// If the breakpoint is expanded.
   bool get isExpanded => this == WindowSize.expanded;
 
+  /// If the breakpoint is expanded or larger.
+  bool get isExpandedUp => this >= WindowSize.expanded;
+
   /// If the breakpoint is large.
   bool get isLarge => this == WindowSize.large;
 
+  /// If the breakpoint is large or larger.
+  bool get isLargeUp => this >= WindowSize.large;
+
   /// If the breakpoint is extra-large.
   bool get isExtraLarge => this == WindowSize.extraLarge;
+
+  /// If the breakpoint is extra-large or larger.
+  bool get isExtraLargeUp => this >= WindowSize.extraLarge;
 
   const WindowSize._(this.min, this.max);
 }
@@ -133,9 +148,7 @@ class _WindowSizeScopeState extends State<WindowSizeScope> with WidgetsBindingOb
     final windowSize = WindowSize.fromWidth(_getScreenSize().width);
 
     if (_windowSize != windowSize) {
-      setState(() {
-        _windowSize = windowSize;
-      });
+      setState(() => _windowSize = windowSize);
     }
     super.didChangeMetrics();
   }

@@ -4,7 +4,7 @@ ColorPalette createPaletteFor({
   Brightness brightness = Brightness.light,
 }) {
   final materialColorScheme = ColorScheme.fromSeed(
-    seedColor: const Color(0xFF9EBC9F),
+    seedColor: const Color(0xFF5BC0EB),
     brightness: brightness,
   );
 
