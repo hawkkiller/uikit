@@ -5,29 +5,24 @@ class ColorPalettePreview extends StatelessWidget {
   const ColorPalettePreview({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final colorPalette = Theme.of(context).colorPalette;
-
-    return Card(
-      color: colorPalette.surface,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            UiKitText.titleMedium('Light'),
-            const SizedBox(height: 8),
-            _PalettePreview(colorPalette: lightPalette),
-            const SizedBox(height: 24),
-            UiKitText.titleMedium('Dark'),
-            const SizedBox(height: 8),
-            _PalettePreview(colorPalette: darkPalette),
-          ],
+  Widget build(BuildContext context) => UiKitCard(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              UiKitText.titleMedium('Light'),
+              const SizedBox(height: 8),
+              _PalettePreview(colorPalette: lightPalette),
+              const SizedBox(height: 24),
+              UiKitText.titleMedium('Dark'),
+              const SizedBox(height: 8),
+              _PalettePreview(colorPalette: darkPalette),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _PalettePreview extends StatefulWidget {
@@ -43,29 +38,32 @@ class _PalettePreview extends StatefulWidget {
 
 class _PalettePreviewState extends State<_PalettePreview> {
   @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      children: widget.colorPalette.toMap().entries.map((entry) {
-        final name = entry.key;
-        final color = entry.value;
+  Widget build(BuildContext context) => Wrap(
+        spacing: 16,
+        runSpacing: 16,
+        children: widget.colorPalette.toMap().entries.map((entry) {
+          final name = entry.key;
+          final color = entry.value;
 
-        return Column(
-          key: ValueKey(name),
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox.square(
-              dimension: 100,
-              child: Material(
-                color: color,
-                borderRadius: BorderRadius.circular(8),
-              ),
+          return SizedBox(
+            width: 120,
+            height: 100,
+            child: Column(
+              key: ValueKey(name),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox.square(
+                  dimension: 60,
+                  child: Material(
+                    color: color,
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                UiKitText.labelMedium(name),
+              ],
             ),
-            UiKitText.labelMedium(name),
-          ],
-        );
-      }).toList(),
-    );
-  }
+          );
+        }).toList(),
+      );
 }

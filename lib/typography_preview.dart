@@ -4,8 +4,7 @@ class TypographyPreview extends StatelessWidget {
   const TypographyPreview({super.key});
 
   @override
-  Widget build(BuildContext context) => Card(
-        color: Theme.of(context).colorPalette.surface,
+  Widget build(BuildContext context) => UiKitCard(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

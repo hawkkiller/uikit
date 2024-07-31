@@ -6,28 +6,25 @@ class ButtonsPreview extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Card(
-        color: Theme.of(context).colorPalette.surface,
-        child: const Padding(
-          padding: EdgeInsets.all(16),
-          child: Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            children: [
-              _FilledPrimaryButton(),
-              _FilledSecondaryButton(),
-              _OutlinedPrimaryButton(),
-              _OutlinedSecondaryButton(),
-              _IconButtons(),
-              _TextButton(),
-            ],
+  Widget build(BuildContext context) => const RepaintBoundary(
+        child: UiKitCard(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: [
+                _FilledPrimaryButton(),
+                _FilledSecondaryButton(),
+                _OutlinedPrimaryButton(),
+                _OutlinedSecondaryButton(),
+                _IconButtons(),
+                _TextButton(),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _TextButton extends StatelessWidget {

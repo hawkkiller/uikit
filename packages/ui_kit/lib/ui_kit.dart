@@ -12,6 +12,7 @@ export 'src/theme/theme_data.dart';
 /* Components */
 export 'src/components/button.dart';
 export 'src/components/text.dart';
+export 'src/components/card.dart';
 
 /* Animations */
 export 'src/animations/animations.dart';

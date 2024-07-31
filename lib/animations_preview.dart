@@ -26,8 +26,7 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
   }
 
   @override
-  Widget build(BuildContext context) => Card(
-        color: Theme.of(context).colorPalette.surface,
+  Widget build(BuildContext context) => UiKitCard(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

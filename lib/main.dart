@@ -77,12 +77,12 @@ class UiKitPreview extends StatelessWidget {
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
                           width: math.min(840, bConstraints.maxWidth - 440),
                           child: const ColorPalettePreview(),
                         ),
-                        const SizedBox(width: 24),
                         const TypographyPreview(),
                         if (bConstraints.maxWidth > 1450) const Expanded(child: animationPreview),
                       ],
