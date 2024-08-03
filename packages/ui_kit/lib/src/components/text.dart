@@ -218,7 +218,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        styleBuilder: (typography) => typography.bodyLarge,
+        styleBuilder: (typography) => typography.bodyMedium,
       );
 
   /// Creates a [UiKitText] widget with a small body size.
@@ -237,7 +237,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        styleBuilder: (typography) => typography.bodyLarge,
+        styleBuilder: (typography) => typography.bodySmall,
       );
 
   /// Creates a [UiKitText] widget with a large label size.
@@ -256,7 +256,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        styleBuilder: (typography) => typography.bodyLarge,
+        styleBuilder: (typography) => typography.labelLarge,
       );
 
   /// Creates a [UiKitText] widget with a medium label size.
@@ -275,7 +275,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        styleBuilder: (typography) => typography.bodyLarge,
+        styleBuilder: (typography) => typography.labelMedium,
       );
 
   /// Creates a [UiKitText] widget with a small label size.
@@ -294,7 +294,7 @@ class UiKitText extends StatelessWidget {
         textAlign: textAlign,
         overflow: overflow,
         maxLines: maxLines,
-        styleBuilder: (typography) => typography.bodyLarge,
+        styleBuilder: (typography) => typography.labelSmall,
       );
 
   final String content;

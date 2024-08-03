@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 /// Card widget from the UIKit package.
@@ -46,6 +45,7 @@ class UiKitCard extends StatelessWidget {
         child: Material(
           type: MaterialType.card,
           elevation: 1,
+          color: color ?? Theme.of(context).colorPalette.surface,
           shadowColor: Theme.of(context).colorPalette.shadow,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
