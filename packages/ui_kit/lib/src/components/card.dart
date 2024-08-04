@@ -1,8 +1,8 @@
 import 'package:ui_kit/ui_kit.dart';
 
 /// Card widget from the UIKit package.
-class UiKitCard extends StatelessWidget {
-  const UiKitCard({
+class UiCard extends StatelessWidget {
+  const UiCard({
     required this.child,
     this.semanticContainer = true,
     this.color,

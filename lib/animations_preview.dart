@@ -26,18 +26,18 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
   }
 
   @override
-  Widget build(BuildContext context) => UiKitCard(
+  Widget build(BuildContext context) => UiCard(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              UiKitText.titleMedium(
+              UiText.titleMedium(
                 'Animation Preview',
                 color: Theme.of(context).colorPalette.onSurface,
               ),
               const SizedBox(height: 16),
-              UiKitText.titleSmall(
+              UiText.titleSmall(
                 'Bounce In',
                 color: Theme.of(context).colorPalette.onSurface,
               ),
@@ -47,12 +47,12 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
                 child: _AnimationPreview(
                   animation: CurvedAnimation(
                     parent: animationController,
-                    curve: UiKitCurves.bounceIn,
+                    curve: UiCurves.bounceIn,
                   ),
                 ),
               ),
               const SizedBox(height: 16),
-              UiKitText.titleSmall(
+              UiText.titleSmall(
                 'Bounce Out',
                 color: Theme.of(context).colorPalette.onSurface,
               ),
@@ -62,12 +62,12 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
                 child: _AnimationPreview(
                   animation: CurvedAnimation(
                     parent: animationController,
-                    curve: UiKitCurves.bounceOut,
+                    curve: UiCurves.bounceOut,
                   ),
                 ),
               ),
               const SizedBox(height: 16),
-              UiKitText.titleSmall(
+              UiText.titleSmall(
                 'Decelerate',
                 color: Theme.of(context).colorPalette.onSurface,
               ),
@@ -77,7 +77,7 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
                 child: _AnimationPreview(
                   animation: CurvedAnimation(
                     parent: animationController,
-                    curve: UiKitCurves.decelerate,
+                    curve: UiCurves.decelerate,
                   ),
                 ),
               ),

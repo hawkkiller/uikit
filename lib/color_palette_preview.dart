@@ -5,18 +5,18 @@ class ColorPalettePreview extends StatelessWidget {
   const ColorPalettePreview({super.key});
 
   @override
-  Widget build(BuildContext context) => UiKitCard(
+  Widget build(BuildContext context) => UiCard(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              UiKitText.titleMedium('Light'),
+              UiText.titleMedium('Light'),
               const SizedBox(height: 8),
               _PalettePreview(colorPalette: lightPalette),
               const SizedBox(height: 24),
-              UiKitText.titleMedium('Dark'),
+              UiText.titleMedium('Dark'),
               const SizedBox(height: 8),
               _PalettePreview(colorPalette: darkPalette),
             ],
@@ -60,7 +60,7 @@ class _PalettePreviewState extends State<_PalettePreview> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                UiKitText.labelMedium(name),
+                UiText.labelMedium(name),
               ],
             ),
           );

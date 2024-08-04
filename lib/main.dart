@@ -38,14 +38,14 @@ class MainApp extends StatelessWidget {
               palette: darkPalette,
               typography: appTypography,
             ),
-            home: const Scaffold(body: UiKitPreview()),
+            home: const Scaffold(body: UiPreview()),
           ),
         ),
       );
 }
 
-class UiKitPreview extends StatelessWidget {
-  const UiKitPreview({super.key});
+class UiPreview extends StatelessWidget {
+  const UiPreview({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class UiKitPreview extends StatelessWidget {
         SliverAppBar(
           pinned: true,
           actions: [
-            UiKitIconButton.standard(
+            UiIconButton.standard(
               icon: brightness == Brightness.light
                   ? const Icon(Icons.dark_mode_rounded)
                   : const Icon(Icons.light_mode_rounded),
@@ -76,34 +76,34 @@ class UiKitPreview extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: UiKitText.titleLarge('Color Palette'),
+                child: UiText.titleLarge('Color Palette'),
               ),
               const SizedBox(height: 8),
               const ColorPalettePreview(),
               const SizedBox(height: 24),
               Align(
                 alignment: Alignment.center,
-                child: UiKitText.titleLarge('Typography'),
+                child: UiText.titleLarge('Typography'),
               ),
               const TypographyPreview(),
               const SizedBox(height: 24),
               Align(
                 alignment: Alignment.center,
-                child: UiKitText.titleLarge('Buttons'),
+                child: UiText.titleLarge('Buttons'),
               ),
               const SizedBox(height: 8),
               const ButtonsPreview(),
               const SizedBox(height: 24),
               Align(
                 alignment: Alignment.center,
-                child: UiKitText.titleLarge('Text Inputs'),
+                child: UiText.titleLarge('Text Inputs'),
               ),
               const SizedBox(height: 8),
               const TextInputPreview(),
               const SizedBox(height: 24),
               Align(
                 alignment: Alignment.center,
-                child: UiKitText.titleLarge('Animations'),
+                child: UiText.titleLarge('Animations'),
               ),
               const SizedBox(height: 8),
               animationPreview,

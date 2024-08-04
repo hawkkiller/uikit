@@ -1,6 +1,6 @@
 import 'package:ui_kit/ui_kit.dart';
 
-/// Different variants of a [UiKitFilledButton].
+/// Different variants of a [UiFilledButton].
 enum FilledButtonVariant {
   /// A button for primary actions in the app.
   /// For example, the "Save" button in a form.
@@ -11,7 +11,7 @@ enum FilledButtonVariant {
   secondary;
 }
 
-/// Different variants of a [UiKitOutlinedButton].
+/// Different variants of a [UiOutlinedButton].
 enum OutlinedButtonVariant {
   /// A button for primary actions in the app.
   primary,
@@ -20,7 +20,7 @@ enum OutlinedButtonVariant {
   secondary,
 }
 
-/// The variant of an [UiKitIconButton].
+/// The variant of an [UiIconButton].
 enum IconButtonVariant {
   /// A button that is filled with color.
   filled,
@@ -33,8 +33,8 @@ enum IconButtonVariant {
 }
 
 /// A filled button that follows the UI Kit design system.
-class UiKitFilledButton extends ButtonStyleButton {
-  const UiKitFilledButton._({
+class UiFilledButton extends ButtonStyleButton {
+  const UiFilledButton._({
     required super.child,
     required VoidCallback? onPressed,
     required this.variant,
@@ -54,8 +54,8 @@ class UiKitFilledButton extends ButtonStyleButton {
           onLongPress: enabled ? onLongPress : null,
         );
 
-  /// A factory constructor for a primary [UiKitFilledButton].
-  factory UiKitFilledButton.primary({
+  /// A factory constructor for a primary [UiFilledButton].
+  factory UiFilledButton.primary({
     required Widget? label,
     required VoidCallback? onPressed,
     Widget? icon,
@@ -72,7 +72,7 @@ class UiKitFilledButton extends ButtonStyleButton {
     IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
-      UiKitFilledButton._(
+      UiFilledButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -89,8 +89,8 @@ class UiKitFilledButton extends ButtonStyleButton {
         child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
       );
 
-  /// A factory constructor for a secondary [UiKitFilledButton].
-  factory UiKitFilledButton.secondary({
+  /// A factory constructor for a secondary [UiFilledButton].
+  factory UiFilledButton.secondary({
     required Widget? label,
     required VoidCallback? onPressed,
     Widget? icon,
@@ -107,7 +107,7 @@ class UiKitFilledButton extends ButtonStyleButton {
     IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
-      UiKitFilledButton._(
+      UiFilledButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -145,8 +145,8 @@ class UiKitFilledButton extends ButtonStyleButton {
   ButtonStyle? themeStyleOf(BuildContext context) => null;
 }
 
-class UiKitOutlinedButton extends ButtonStyleButton {
-  const UiKitOutlinedButton._({
+class UiOutlinedButton extends ButtonStyleButton {
+  const UiOutlinedButton._({
     required super.child,
     required VoidCallback? onPressed,
     required this.variant,
@@ -166,7 +166,7 @@ class UiKitOutlinedButton extends ButtonStyleButton {
           onLongPress: enabled ? onLongPress : null,
         );
 
-  factory UiKitOutlinedButton.primary({
+  factory UiOutlinedButton.primary({
     required Widget? label,
     required VoidCallback? onPressed,
     Widget? icon,
@@ -183,7 +183,7 @@ class UiKitOutlinedButton extends ButtonStyleButton {
     IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
-      UiKitOutlinedButton._(
+      UiOutlinedButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -200,7 +200,7 @@ class UiKitOutlinedButton extends ButtonStyleButton {
         child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
       );
 
-  factory UiKitOutlinedButton.secondary({
+  factory UiOutlinedButton.secondary({
     required Widget? label,
     required VoidCallback? onPressed,
     Widget? icon,
@@ -217,7 +217,7 @@ class UiKitOutlinedButton extends ButtonStyleButton {
     IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
-      UiKitOutlinedButton._(
+      UiOutlinedButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -254,8 +254,8 @@ class UiKitOutlinedButton extends ButtonStyleButton {
   ButtonStyle? themeStyleOf(BuildContext context) => null;
 }
 
-class UiKitIconButton extends ButtonStyleButton {
-  const UiKitIconButton._({
+class UiIconButton extends ButtonStyleButton {
+  const UiIconButton._({
     required super.child,
     required this.variant,
     required VoidCallback? onPressed,
@@ -275,7 +275,7 @@ class UiKitIconButton extends ButtonStyleButton {
           onLongPress: enabled ? onLongPress : null,
         );
 
-  factory UiKitIconButton.filled({
+  factory UiIconButton.filled({
     required Widget icon,
     required VoidCallback? onPressed,
     bool enabled = true,
@@ -290,7 +290,7 @@ class UiKitIconButton extends ButtonStyleButton {
     bool isSemanticButton = true,
     Key? key,
   }) =>
-      UiKitIconButton._(
+      UiIconButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -307,7 +307,7 @@ class UiKitIconButton extends ButtonStyleButton {
         child: icon,
       );
 
-  factory UiKitIconButton.outlined({
+  factory UiIconButton.outlined({
     required Widget icon,
     required VoidCallback? onPressed,
     bool enabled = true,
@@ -322,7 +322,7 @@ class UiKitIconButton extends ButtonStyleButton {
     bool isSemanticButton = true,
     Key? key,
   }) =>
-      UiKitIconButton._(
+      UiIconButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -339,7 +339,7 @@ class UiKitIconButton extends ButtonStyleButton {
         child: icon,
       );
 
-  factory UiKitIconButton.standard({
+  factory UiIconButton.standard({
     required Widget icon,
     required VoidCallback? onPressed,
     bool enabled = true,
@@ -354,7 +354,7 @@ class UiKitIconButton extends ButtonStyleButton {
     bool isSemanticButton = true,
     Key? key,
   }) =>
-      UiKitIconButton._(
+      UiIconButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -403,8 +403,8 @@ class UiKitIconButton extends ButtonStyleButton {
   ButtonStyle? themeStyleOf(BuildContext context) => null;
 }
 
-class UiKitTextButton extends ButtonStyleButton {
-  const UiKitTextButton._({
+class UiTextButton extends ButtonStyleButton {
+  const UiTextButton._({
     required super.child,
     required VoidCallback? onPressed,
     bool enabled = true,
@@ -423,7 +423,7 @@ class UiKitTextButton extends ButtonStyleButton {
           onLongPress: enabled ? onLongPress : null,
         );
 
-  factory UiKitTextButton({
+  factory UiTextButton({
     required Widget? label,
     required VoidCallback? onPressed,
     Widget? icon,
@@ -440,7 +440,7 @@ class UiKitTextButton extends ButtonStyleButton {
     IconAlignment iconAlignment = IconAlignment.start,
     Key? key,
   }) =>
-      UiKitTextButton._(
+      UiTextButton._(
         onPressed: onPressed,
         enabled: enabled,
         autofocus: autofocus,
@@ -473,7 +473,7 @@ class UiKitTextButton extends ButtonStyleButton {
   ButtonStyle? themeStyleOf(BuildContext context) => null;
 }
 
-class _FilledButtonStyle extends _UiKitBaseButtonStyle {
+class _FilledButtonStyle extends _UiBaseButtonStyle {
   const _FilledButtonStyle({
     required super.colorPalette,
     required super.typography,
@@ -552,7 +552,7 @@ class _FilledButtonStyle extends _UiKitBaseButtonStyle {
   WidgetStateProperty<Color>? get shadowColor => WidgetStatePropertyAll<Color>(colorPalette.shadow);
 }
 
-class _OutlinedButtonStyle extends _UiKitBaseButtonStyle {
+class _OutlinedButtonStyle extends _UiBaseButtonStyle {
   const _OutlinedButtonStyle({
     required super.colorPalette,
     required super.typography,
@@ -732,7 +732,7 @@ class _IconButtonFilledStyle extends _IconButtonBaseStyle {
       );
 }
 
-class _IconButtonBaseStyle extends _UiKitBaseButtonStyle {
+class _IconButtonBaseStyle extends _UiBaseButtonStyle {
   const _IconButtonBaseStyle({
     required super.colorPalette,
     required super.typography,
@@ -779,7 +779,7 @@ class _IconButtonBaseStyle extends _UiKitBaseButtonStyle {
   WidgetStateProperty<double>? get iconSize => const WidgetStatePropertyAll<double>(24.0);
 }
 
-class _TextButtonStyle extends _UiKitBaseButtonStyle {
+class _TextButtonStyle extends _UiBaseButtonStyle {
   const _TextButtonStyle({
     required super.colorPalette,
     required super.typography,
@@ -817,8 +817,8 @@ class _TextButtonStyle extends _UiKitBaseButtonStyle {
       );
 }
 
-class _UiKitBaseButtonStyle extends ButtonStyle {
-  const _UiKitBaseButtonStyle({
+class _UiBaseButtonStyle extends ButtonStyle {
+  const _UiBaseButtonStyle({
     required this.colorPalette,
     required this.typography,
   });

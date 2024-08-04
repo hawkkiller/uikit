@@ -9,7 +9,7 @@ class TextInputPreview extends StatefulWidget {
 
 class _TextInputPreviewState extends State<TextInputPreview> {
   @override
-  Widget build(BuildContext context) => UiKitCard(
+  Widget build(BuildContext context) => UiCard(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: SizedBox(
@@ -17,31 +17,31 @@ class _TextInputPreviewState extends State<TextInputPreview> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   style: const UiTextInputStyle(hintText: 'Hint'),
                 ),
                 const SizedBox(height: 16),
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   style: const UiTextInputStyle(
                     hintText: 'With helper',
                     helperText: 'Helper',
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   style: const UiTextInputStyle(
                     hintText: 'With error',
                     errorText: 'Error',
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   showCounter: true,
                   maxLength: 500,
                   style: const UiTextInputStyle(hintText: 'With counter'),
                 ),
                 const SizedBox(height: 16),
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   showCounter: true,
                   maxLength: 500,
                   style: const UiTextInputStyle(
@@ -50,7 +50,7 @@ class _TextInputPreviewState extends State<TextInputPreview> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   showCounter: true,
                   maxLength: 500,
                   style: const UiTextInputStyle(
@@ -58,7 +58,7 @@ class _TextInputPreviewState extends State<TextInputPreview> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiKitTextInput.outlined(
+                UiTextInput.outlined(
                   showCounter: true,
                   enabled: false,
                   maxLength: 500,

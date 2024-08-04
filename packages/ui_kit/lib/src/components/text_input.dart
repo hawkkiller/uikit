@@ -1,10 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-enum UiKitTextInputVariant { outlined }
+enum UiTextInputVariant { outlined }
 
-class UiKitTextInput extends StatefulWidget {
-  const UiKitTextInput({
+class UiTextInput extends StatefulWidget {
+  const UiTextInput({
     required this.variant,
     this.controller,
     this.focusNode,
@@ -26,7 +26,7 @@ class UiKitTextInput extends StatefulWidget {
     super.key,
   });
 
-  factory UiKitTextInput.outlined({
+  factory UiTextInput.outlined({
     UiTextInputStyle? style,
     TextEditingController? controller,
     List<TextInputFormatter>? inputFormatters,
@@ -46,8 +46,8 @@ class UiKitTextInput extends StatefulWidget {
     TextCapitalization textCapitalization = TextCapitalization.none,
     bool obscureText = false,
   }) =>
-      UiKitTextInput(
-        variant: UiKitTextInputVariant.outlined,
+      UiTextInput(
+        variant: UiTextInputVariant.outlined,
         controller: controller,
         focusNode: focusNode,
         style: style,
@@ -85,13 +85,13 @@ class UiKitTextInput extends StatefulWidget {
   final VoidCallback? onEditingComplete;
   final TextInputAction? textInputAction;
   final TextSelectionControls? selectionControls;
-  final UiKitTextInputVariant variant;
+  final UiTextInputVariant variant;
 
   @override
-  State<UiKitTextInput> createState() => _UiKitTextInputState();
+  State<UiTextInput> createState() => _UiTextInputState();
 }
 
-class _UiKitTextInputState extends State<UiKitTextInput> {
+class _UiTextInputState extends State<UiTextInput> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -99,7 +99,7 @@ class _UiKitTextInputState extends State<UiKitTextInput> {
     final typography = theme.appTypography;
 
     final variantStyle = switch (widget.variant) {
-      UiKitTextInputVariant.outlined => OutlinedUiTextInputStyle(
+      UiTextInputVariant.outlined => OutlinedUiTextInputStyle(
           palette: palette,
           typography: typography,
         ),
