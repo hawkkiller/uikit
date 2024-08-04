@@ -57,6 +57,15 @@ class _TextInputPreviewState extends State<TextInputPreview> {
                     labelText: 'With label',
                   ),
                 ),
+                const SizedBox(height: 16),
+                UiKitTextInput.outlined(
+                  showCounter: true,
+                  enabled: false,
+                  maxLength: 500,
+                  style: const UiTextInputStyle(
+                    hintText: 'Disabled',
+                  ),
+                ),
               ],
             ),
           ),

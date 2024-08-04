@@ -162,8 +162,15 @@ class OutlinedUiTextInputStyle extends UiTextInputStyle {
   TextStyle? get textStyle => typography.bodyLarge.copyWith(color: palette.onSurface);
 
   @override
-  TextStyle? get hintStyle =>
-      typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.78));
+  TextStyle? get hintStyle => WidgetStateTextStyle.resolveWith(
+        (states) {
+          if (states.contains(WidgetState.disabled)) {
+            return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.38));
+          }
+
+          return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.78));
+        },
+      );
 
   @override
   TextStyle? get helperStyle => typography.bodySmall.copyWith(color: palette.onSurface);
@@ -171,6 +178,10 @@ class OutlinedUiTextInputStyle extends UiTextInputStyle {
   @override
   TextStyle? get labelStyle => WidgetStateTextStyle.resolveWith(
         (states) {
+          if (states.contains(WidgetState.disabled)) {
+            return typography.labelLarge.copyWith(color: palette.onSurface.withOpacity(.38));
+          }
+
           if (states.contains(WidgetState.error)) {
             return typography.bodyLarge.copyWith(color: palette.error);
           }
@@ -179,7 +190,7 @@ class OutlinedUiTextInputStyle extends UiTextInputStyle {
             return typography.bodyLarge.copyWith(color: palette.error);
           }
 
-          return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.712));
+          return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.78));
         },
       );
 
@@ -233,9 +244,11 @@ class OutlinedUiTextInputStyle extends UiTextInputStyle {
       );
 
   @override
-  InputBorder? get border => OutlineInputBorder(
+  InputBorder? get disabledBorder => OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: palette.outline),
+        borderSide: BorderSide(
+          color: palette.onSurface.withOpacity(.08),
+        ),
       );
 }
 
