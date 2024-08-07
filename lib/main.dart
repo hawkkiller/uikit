@@ -4,6 +4,7 @@ import 'package:ui_kit/ui_kit.dart';
 import 'package:uikit/animations_preview.dart';
 import 'package:uikit/buttons_preview.dart';
 import 'package:uikit/color_palette_preview.dart';
+import 'package:uikit/icons_preview.dart';
 import 'package:uikit/text_input_preview.dart';
 import 'package:uikit/theme_constants.dart';
 import 'package:uikit/typography_preview.dart';
@@ -100,6 +101,13 @@ class UiPreview extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const TextInputPreview(),
+              const SizedBox(height: 24),
+              Align(
+                alignment: Alignment.center,
+                child: UiText.titleLarge('Icons'),
+              ),
+              const SizedBox(height: 8),
+              const IconsPreview(),
               const SizedBox(height: 24),
               Align(
                 alignment: Alignment.center,
