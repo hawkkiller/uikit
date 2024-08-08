@@ -6,7 +6,6 @@ import 'package:uikit/buttons_preview.dart';
 import 'package:uikit/color_palette_preview.dart';
 import 'package:uikit/icons_preview.dart';
 import 'package:uikit/text_input_preview.dart';
-import 'package:uikit/theme_constants.dart';
 import 'package:uikit/typography_preview.dart';
 
 final themeModeSwitcher = ValueNotifier(ThemeMode.system);
@@ -15,20 +14,16 @@ void main() {
   runApp(const MainApp());
 }
 
-final lightPalette = createPaletteFor(brightness: Brightness.light);
-final darkPalette = createPaletteFor(brightness: Brightness.dark);
-final appTypography = createTypographyFor();
-
 final lightTheme = createThemeData(
   brightness: Brightness.light,
   palette: lightPalette,
-  typography: appTypography,
+  typography: defaultTypography,
 );
 
 final darkTheme = createThemeData(
   brightness: Brightness.dark,
   palette: darkPalette,
-  typography: appTypography,
+  typography: defaultTypography,
 );
 
 class MainApp extends StatelessWidget {

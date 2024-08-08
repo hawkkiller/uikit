@@ -1,21 +1,5 @@
 import 'package:ui_kit/ui_kit.dart';
 
-/// Creates a [ThemeData] object based on the provided [ColorPalette] and [AppTypography].
-///
-/// The [brightness] parameter is used to determine the brightness of the theme.
-ThemeData createThemeData({
-  required ColorPalette palette,
-  required AppTypography typography,
-  required Brightness brightness,
-}) =>
-    ThemeData(
-      brightness: brightness,
-      extensions: {
-        palette,
-        typography,
-      },
-    );
-
 /// An extension for theme to provide a color palette in context.
 class ColorPalette extends ThemeExtension<ColorPalette> {
   const ColorPalette({
@@ -281,16 +265,8 @@ class AppTypography extends ThemeExtension<AppTypography> {
 /// An extension for theme to get color palette and typography from [BuildContext].
 extension ThemeDataExtensions on ThemeData {
   /// The color palette set for the app.
-  ColorPalette get colorPalette =>
-      extension<ColorPalette>() ?? _throwExtensionNotFound('ColorPalette');
+  ColorPalette get colorPalette => extension<ColorPalette>() ?? lightPalette;
 
   /// The typography set for the app.
-  AppTypography get appTypography =>
-      extension<AppTypography>() ?? _throwExtensionNotFound('AppTypography');
-
-  Never _throwExtensionNotFound(String extensionName) => throw FlutterError(
-        'No $extensionName extension found in the current theme. '
-        'Make sure to provide the extension when creating the theme.'
-        'If you are using the ui_kit, consider using the createThemeData function.',
-      );
+  AppTypography get appTypography => extension<AppTypography>() ?? defaultTypography;
 }

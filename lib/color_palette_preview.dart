@@ -1,5 +1,4 @@
 import 'package:ui_kit/ui_kit.dart';
-import 'package:uikit/main.dart';
 
 class ColorPalettePreview extends StatelessWidget {
   const ColorPalettePreview({super.key});
@@ -25,7 +24,7 @@ class ColorPalettePreview extends StatelessWidget {
       );
 }
 
-class _PalettePreview extends StatefulWidget {
+class _PalettePreview extends StatelessWidget {
   const _PalettePreview({
     required this.colorPalette,
   });
@@ -33,15 +32,10 @@ class _PalettePreview extends StatefulWidget {
   final ColorPalette colorPalette;
 
   @override
-  State<_PalettePreview> createState() => _PalettePreviewState();
-}
-
-class _PalettePreviewState extends State<_PalettePreview> {
-  @override
   Widget build(BuildContext context) => Wrap(
         spacing: 16,
         runSpacing: 16,
-        children: widget.colorPalette.toMap().entries.map((entry) {
+        children: colorPalette.toMap().entries.map((entry) {
           final name = entry.key;
           final color = entry.value;
 

@@ -11,9 +11,10 @@ export 'src/components/button.dart';
 export 'src/components/card.dart';
 export 'src/components/text.dart';
 export 'src/components/text_input.dart';
+/* Iconography */
+export 'src/icons/ui_icons.dart';
 /* Layout */
 export 'src/layout/window_size.dart';
 /* Theme */
 export 'src/theme/theme_data.dart';
-/* Iconography */
-export 'src/icons/ui_icons.dart';
+export 'src/theme/theme_helpers.dart';
