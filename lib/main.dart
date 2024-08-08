@@ -26,9 +26,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) => WindowSizeScope(
         child: ValueListenableBuilder(
           valueListenable: themeModeSwitcher,
-          builder: (context, value, _) => MaterialApp(
+          builder: (context, themeMode, _) => MaterialApp(
             debugShowCheckedModeBanner: false,
-            themeMode: value,
+            themeMode: themeMode,
             theme: createThemeData(
               brightness: Brightness.light,
               palette: lightPalette,
