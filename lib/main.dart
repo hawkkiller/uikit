@@ -19,6 +19,18 @@ final lightPalette = createPaletteFor(brightness: Brightness.light);
 final darkPalette = createPaletteFor(brightness: Brightness.dark);
 final appTypography = createTypographyFor();
 
+final lightTheme = createThemeData(
+  brightness: Brightness.light,
+  palette: lightPalette,
+  typography: appTypography,
+);
+
+final darkTheme = createThemeData(
+  brightness: Brightness.dark,
+  palette: darkPalette,
+  typography: appTypography,
+);
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -29,17 +41,9 @@ class MainApp extends StatelessWidget {
           builder: (context, themeMode, _) => MaterialApp(
             debugShowCheckedModeBanner: false,
             themeMode: themeMode,
-            theme: createThemeData(
-              brightness: Brightness.light,
-              palette: lightPalette,
-              typography: appTypography,
-            ),
-            darkTheme: createThemeData(
-              brightness: Brightness.dark,
-              palette: darkPalette,
-              typography: appTypography,
-            ),
-            home: const Scaffold(body: UiPreview()),
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            home: const UiPreview(),
           ),
         ),
       );
@@ -54,71 +58,73 @@ class UiPreview extends StatelessWidget {
     const animationPreview = AnimationsPreview(key: GlobalObjectKey('AnimationsPreview'));
     final brightness = Theme.of(context).brightness;
 
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          pinned: true,
-          actions: [
-            UiIconButton.standard(
-              icon: brightness == Brightness.light
-                  ? const Icon(Icons.dark_mode_rounded)
-                  : const Icon(Icons.light_mode_rounded),
-              onPressed: () => themeModeSwitcher.value =
-                  brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light,
-            ),
-          ],
-        ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(
-            horizontal: math.max((size.width - 900) / 2, 16),
-            vertical: 24,
-          ),
-          sliver: SliverList.list(
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: UiText.titleLarge('Color Palette'),
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            actions: [
+              UiIconButton.standard(
+                icon: brightness == Brightness.light
+                    ? const Icon(Icons.dark_mode_rounded)
+                    : const Icon(Icons.light_mode_rounded),
+                onPressed: () => themeModeSwitcher.value =
+                    brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light,
               ),
-              const SizedBox(height: 8),
-              const ColorPalettePreview(),
-              const SizedBox(height: 24),
-              Align(
-                alignment: Alignment.center,
-                child: UiText.titleLarge('Typography'),
-              ),
-              const TypographyPreview(),
-              const SizedBox(height: 24),
-              Align(
-                alignment: Alignment.center,
-                child: UiText.titleLarge('Buttons'),
-              ),
-              const SizedBox(height: 8),
-              const ButtonsPreview(),
-              const SizedBox(height: 24),
-              Align(
-                alignment: Alignment.center,
-                child: UiText.titleLarge('Text Inputs'),
-              ),
-              const SizedBox(height: 8),
-              const TextInputPreview(),
-              const SizedBox(height: 24),
-              Align(
-                alignment: Alignment.center,
-                child: UiText.titleLarge('Icons'),
-              ),
-              const SizedBox(height: 8),
-              const IconsPreview(),
-              const SizedBox(height: 24),
-              Align(
-                alignment: Alignment.center,
-                child: UiText.titleLarge('Animations'),
-              ),
-              const SizedBox(height: 8),
-              animationPreview,
             ],
           ),
-        ),
-      ],
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              horizontal: math.max((size.width - 900) / 2, 16),
+              vertical: 24,
+            ),
+            sliver: SliverList.list(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: UiText.titleLarge('Color Palette'),
+                ),
+                const SizedBox(height: 8),
+                const ColorPalettePreview(),
+                const SizedBox(height: 24),
+                Align(
+                  alignment: Alignment.center,
+                  child: UiText.titleLarge('Typography'),
+                ),
+                const TypographyPreview(),
+                const SizedBox(height: 24),
+                Align(
+                  alignment: Alignment.center,
+                  child: UiText.titleLarge('Buttons'),
+                ),
+                const SizedBox(height: 8),
+                const ButtonsPreview(),
+                const SizedBox(height: 24),
+                Align(
+                  alignment: Alignment.center,
+                  child: UiText.titleLarge('Text Inputs'),
+                ),
+                const SizedBox(height: 8),
+                const TextInputPreview(),
+                const SizedBox(height: 24),
+                Align(
+                  alignment: Alignment.center,
+                  child: UiText.titleLarge('Icons'),
+                ),
+                const SizedBox(height: 8),
+                const IconsPreview(),
+                const SizedBox(height: 24),
+                Align(
+                  alignment: Alignment.center,
+                  child: UiText.titleLarge('Animations'),
+                ),
+                const SizedBox(height: 8),
+                animationPreview,
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
