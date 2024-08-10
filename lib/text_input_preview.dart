@@ -17,52 +17,52 @@ class _TextInputPreviewState extends State<TextInputPreview> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                UiTextInput.outlined(
-                  style: const UiTextInputStyle(hintText: 'Hint'),
+                UiTextField.outlined(
+                  style: const UiTextFieldStyle(hintText: 'Hint'),
                 ),
                 const SizedBox(height: 16),
-                UiTextInput.outlined(
-                  style: const UiTextInputStyle(
+                UiTextField.outlined(
+                  style: const UiTextFieldStyle(
                     hintText: 'With helper',
                     helperText: 'Helper',
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiTextInput.outlined(
-                  style: const UiTextInputStyle(
+                UiTextField.outlined(
+                  style: const UiTextFieldStyle(
                     hintText: 'With error',
                     errorText: 'Error',
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiTextInput.outlined(
+                UiTextField.outlined(
                   showCounter: true,
                   maxLength: 500,
-                  style: const UiTextInputStyle(hintText: 'With counter'),
+                  style: const UiTextFieldStyle(hintText: 'With counter'),
                 ),
                 const SizedBox(height: 16),
-                UiTextInput.outlined(
+                UiTextField.outlined(
                   showCounter: true,
                   maxLength: 500,
-                  style: const UiTextInputStyle(
+                  style: const UiTextFieldStyle(
                     hintText: 'With counter and helper',
                     helperText: 'Helper',
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiTextInput.outlined(
+                UiTextField.outlined(
                   showCounter: true,
                   maxLength: 500,
-                  style: const UiTextInputStyle(
+                  style: const UiTextFieldStyle(
                     labelText: 'With label',
                   ),
                 ),
                 const SizedBox(height: 16),
-                UiTextInput.outlined(
+                UiTextField.outlined(
                   showCounter: true,
                   enabled: false,
                   maxLength: 500,
-                  style: const UiTextInputStyle(
+                  style: const UiTextFieldStyle(
                     hintText: 'Disabled',
                   ),
                 ),

@@ -10,7 +10,7 @@ export 'src/animations/animations.dart';
 export 'src/components/button.dart';
 export 'src/components/card.dart';
 export 'src/components/text.dart';
-export 'src/components/text_input.dart';
+export 'src/components/text_field.dart';
 /* Iconography */
 export 'src/icons/ui_icons.dart';
 /* Layout */

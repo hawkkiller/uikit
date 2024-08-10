@@ -3,8 +3,8 @@ import 'package:ui_kit/ui_kit.dart';
 
 enum UiTextInputVariant { outlined }
 
-class UiTextInput extends StatefulWidget {
-  const UiTextInput({
+class UiTextField extends StatefulWidget {
+  const UiTextField({
     required this.variant,
     this.controller,
     this.focusNode,
@@ -26,8 +26,8 @@ class UiTextInput extends StatefulWidget {
     super.key,
   });
 
-  factory UiTextInput.outlined({
-    UiTextInputStyle? style,
+  factory UiTextField.outlined({
+    UiTextFieldStyle? style,
     TextEditingController? controller,
     List<TextInputFormatter>? inputFormatters,
     FocusNode? focusNode,
@@ -46,7 +46,7 @@ class UiTextInput extends StatefulWidget {
     TextCapitalization textCapitalization = TextCapitalization.none,
     bool obscureText = false,
   }) =>
-      UiTextInput(
+      UiTextField(
         variant: UiTextInputVariant.outlined,
         controller: controller,
         focusNode: focusNode,
@@ -68,7 +68,7 @@ class UiTextInput extends StatefulWidget {
         key: key,
       );
 
-  final UiTextInputStyle? style;
+  final UiTextFieldStyle? style;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool? enabled;
@@ -88,10 +88,10 @@ class UiTextInput extends StatefulWidget {
   final UiTextInputVariant variant;
 
   @override
-  State<UiTextInput> createState() => _UiTextInputState();
+  State<UiTextField> createState() => _UiTextFieldState();
 }
 
-class _UiTextInputState extends State<UiTextInput> {
+class _UiTextFieldState extends State<UiTextField> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -99,7 +99,7 @@ class _UiTextInputState extends State<UiTextInput> {
     final typography = theme.appTypography;
 
     final variantStyle = switch (widget.variant) {
-      UiTextInputVariant.outlined => OutlinedUiTextInputStyle(
+      UiTextInputVariant.outlined => OutlinedUiTextFieldStyle(
           palette: palette,
           typography: typography,
         ),
@@ -143,8 +143,8 @@ class _UiTextInputState extends State<UiTextInput> {
   }
 }
 
-class OutlinedUiTextInputStyle extends UiTextInputStyle {
-  const OutlinedUiTextInputStyle({required this.palette, required this.typography});
+class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
+  const OutlinedUiTextFieldStyle({required this.palette, required this.typography});
 
   final ColorPalette palette;
   final AppTypography typography;
@@ -252,8 +252,8 @@ class OutlinedUiTextInputStyle extends UiTextInputStyle {
       );
 }
 
-class UiTextInputStyle extends InputDecoration {
-  const UiTextInputStyle({
+class UiTextFieldStyle extends InputDecoration {
+  const UiTextFieldStyle({
     super.icon,
     super.iconColor,
     super.label,
@@ -314,9 +314,9 @@ class UiTextInputStyle extends InputDecoration {
   final TextStyle? textStyle;
   final Color? cursorColor;
 
-  UiTextInputStyle merge(UiTextInputStyle? other) {
+  UiTextFieldStyle merge(UiTextFieldStyle? other) {
     if (other == null) return this;
-    return UiTextInputStyle(
+    return UiTextFieldStyle(
       icon: other.icon ?? icon,
       iconColor: other.iconColor ?? iconColor,
       label: other.label ?? label,
