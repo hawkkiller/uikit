@@ -148,11 +148,11 @@ class UiFilledButton extends ButtonStyleButton {
 class UiOutlinedButton extends ButtonStyleButton {
   const UiOutlinedButton._({
     required super.child,
-    required VoidCallback? onPressed,
     required this.variant,
+    required VoidCallback? onPressed,
+    VoidCallback? onLongPress,
     bool enabled = true,
     super.autofocus = false,
-    VoidCallback? onLongPress,
     super.onHover,
     super.onFocusChange,
     super.style,
