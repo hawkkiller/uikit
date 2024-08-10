@@ -107,38 +107,35 @@ class _UiTextFieldState extends State<UiTextField> {
 
     final style = variantStyle.merge(widget.style);
 
-    return Theme(
-      data: ThemeData(),
-      child: TextField(
-        enabled: widget.enabled,
-        inputFormatters: widget.inputFormatters,
-        keyboardType: widget.keyboardType,
-        textCapitalization: widget.textCapitalization,
-        maxLength: widget.maxLength,
-        obscureText: widget.obscureText,
-        restorationId: widget.restorationId,
-        onTap: widget.onTap,
-        onEditingComplete: widget.onEditingComplete,
-        cursorColor: style.cursorColor,
-        expands: widget.expands,
-        focusNode: widget.focusNode,
-        autofocus: widget.autofocus,
-        controller: widget.controller,
-        decoration: style,
-        buildCounter: (
-          context, {
-          required currentLength,
-          required isFocused,
-          required maxLength,
-        }) {
-          if (!widget.showCounter || maxLength == null) return null;
+    return TextField(
+      enabled: widget.enabled,
+      inputFormatters: widget.inputFormatters,
+      keyboardType: widget.keyboardType,
+      textCapitalization: widget.textCapitalization,
+      maxLength: widget.maxLength,
+      obscureText: widget.obscureText,
+      restorationId: widget.restorationId,
+      onTap: widget.onTap,
+      onEditingComplete: widget.onEditingComplete,
+      cursorColor: style.cursorColor,
+      expands: widget.expands,
+      focusNode: widget.focusNode,
+      autofocus: widget.autofocus,
+      controller: widget.controller,
+      decoration: style,
+      buildCounter: (
+        context, {
+        required currentLength,
+        required isFocused,
+        required maxLength,
+      }) {
+        if (!widget.showCounter || maxLength == null) return null;
 
-          return Text('$currentLength/$maxLength', style: style.counterStyle);
-        },
-        style: style.textStyle,
-        textInputAction: widget.textInputAction,
-        selectionControls: widget.selectionControls,
-      ),
+        return Text('$currentLength/$maxLength', style: style.counterStyle);
+      },
+      style: style.textStyle,
+      textInputAction: widget.textInputAction,
+      selectionControls: widget.selectionControls,
     );
   }
 }
@@ -205,13 +202,13 @@ class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
             return typography.labelLarge.copyWith(color: palette.primary);
           }
 
-          return typography.labelLarge.copyWith(color: palette.onSurface.withOpacity(.712));
+          return typography.labelLarge.copyWith(color: palette.onSurface.withOpacity(.76));
         },
       );
 
   @override
   InputBorder? get focusedBorder => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.primary,
           width: 2,
@@ -220,7 +217,7 @@ class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
 
   @override
   InputBorder? get focusedErrorBorder => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.error,
           width: 2,
@@ -229,7 +226,7 @@ class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
 
   @override
   InputBorder? get errorBorder => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.error,
         ),
@@ -237,7 +234,7 @@ class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
 
   @override
   InputBorder? get enabledBorder => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.outline,
         ),
@@ -245,7 +242,7 @@ class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
 
   @override
   InputBorder? get disabledBorder => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.onSurface.withOpacity(.08),
         ),
