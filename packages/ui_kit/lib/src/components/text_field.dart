@@ -99,7 +99,7 @@ class _UiTextFieldState extends State<UiTextField> {
     final typography = theme.appTypography;
 
     final variantStyle = switch (widget.variant) {
-      UiTextInputVariant.outlined => OutlinedUiTextFieldStyle(
+      UiTextInputVariant.outlined => _OutlinedUiTextFieldStyle(
           palette: palette,
           typography: typography,
         ),
@@ -117,11 +117,14 @@ class _UiTextFieldState extends State<UiTextField> {
       restorationId: widget.restorationId,
       onTap: widget.onTap,
       onEditingComplete: widget.onEditingComplete,
-      cursorColor: style.cursorColor,
       expands: widget.expands,
       focusNode: widget.focusNode,
       autofocus: widget.autofocus,
       controller: widget.controller,
+      textInputAction: widget.textInputAction,
+      selectionControls: widget.selectionControls,
+      cursorColor: style.cursorColor,
+      style: style.textStyle,
       decoration: style,
       buildCounter: (
         context, {
@@ -133,15 +136,12 @@ class _UiTextFieldState extends State<UiTextField> {
 
         return Text('$currentLength/$maxLength', style: style.counterStyle);
       },
-      style: style.textStyle,
-      textInputAction: widget.textInputAction,
-      selectionControls: widget.selectionControls,
     );
   }
 }
 
-class OutlinedUiTextFieldStyle extends UiTextFieldStyle {
-  const OutlinedUiTextFieldStyle({required this.palette, required this.typography});
+class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
+  const _OutlinedUiTextFieldStyle({required this.palette, required this.typography});
 
   final ColorPalette palette;
   final AppTypography typography;
@@ -308,9 +308,16 @@ class UiTextFieldStyle extends InputDecoration {
     this.cursorColor,
   });
 
+  /// The style to use for the text being edited.
   final TextStyle? textStyle;
+
+  /// The color to use for the cursor.
   final Color? cursorColor;
 
+  /// Merge two [UiTextFieldStyle] objects.
+  ///
+  /// If a property is not null in [other], it will be used,
+  /// otherwise the property from `this` will be used.
   UiTextFieldStyle merge(UiTextFieldStyle? other) {
     if (other == null) return this;
     return UiTextFieldStyle(
