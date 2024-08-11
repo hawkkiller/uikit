@@ -147,16 +147,13 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   final AppTypography typography;
 
   @override
-  Color? get fillColor => palette.surface;
+  TextStyle? get textStyle => typography.bodyLarge.copyWith(color: palette.onSurface);
 
   @override
   TextStyle? get counterStyle => typography.labelSmall.copyWith(color: palette.onSurface);
 
   @override
   TextStyle? get errorStyle => typography.bodySmall.copyWith(color: palette.error);
-
-  @override
-  TextStyle? get textStyle => typography.bodyLarge.copyWith(color: palette.onSurface);
 
   @override
   TextStyle? get hintStyle => WidgetStateTextStyle.resolveWith(

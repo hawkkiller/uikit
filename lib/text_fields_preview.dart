@@ -1,13 +1,13 @@
 import 'package:ui_kit/ui_kit.dart';
 
-class TextInputPreview extends StatefulWidget {
-  const TextInputPreview({super.key});
+class TextFieldsPreview extends StatefulWidget {
+  const TextFieldsPreview({super.key});
 
   @override
-  State<TextInputPreview> createState() => _TextInputPreviewState();
+  State<TextFieldsPreview> createState() => _TextFieldsPreviewState();
 }
 
-class _TextInputPreviewState extends State<TextInputPreview> {
+class _TextFieldsPreviewState extends State<TextFieldsPreview> {
   @override
   Widget build(BuildContext context) => UiCard(
         child: Padding(
