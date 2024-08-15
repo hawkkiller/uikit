@@ -141,7 +141,7 @@ class _OutlinedPrimaryButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.onSurface.withOpacity(.38),
+                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
                 ),
               ),
             ),
@@ -192,7 +192,7 @@ class _OutlinedSecondaryButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.onSurface.withOpacity(.38),
+                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
                 ),
               ),
             ),
@@ -243,7 +243,7 @@ class _FilledSecondaryButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.onSurface.withOpacity(.38),
+                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
                 ),
               ),
             ),
@@ -294,7 +294,7 @@ class _FilledPrimaryButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.onSurface.withOpacity(.38),
+                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
                 ),
               ),
             ),

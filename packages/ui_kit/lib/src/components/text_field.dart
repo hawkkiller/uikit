@@ -147,44 +147,44 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   final AppTypography typography;
 
   @override
-  TextStyle? get textStyle => typography.bodyLarge.copyWith(color: palette.onSurface);
+  TextStyle? get textStyle => typography.bodyLarge.copyWith(color: palette.foreground);
 
   @override
-  TextStyle? get counterStyle => typography.labelSmall.copyWith(color: palette.onSurface);
+  TextStyle? get counterStyle => typography.labelSmall.copyWith(color: palette.foreground);
 
   @override
-  TextStyle? get errorStyle => typography.bodySmall.copyWith(color: palette.error);
+  TextStyle? get errorStyle => typography.bodySmall.copyWith(color: palette.destructive);
 
   @override
   TextStyle? get hintStyle => WidgetStateTextStyle.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.38));
+            return typography.bodyLarge.copyWith(color: palette.foreground.withOpacity(.38));
           }
 
-          return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.78));
+          return typography.bodyLarge.copyWith(color: palette.foreground.withOpacity(.78));
         },
       );
 
   @override
-  TextStyle? get helperStyle => typography.bodySmall.copyWith(color: palette.onSurface);
+  TextStyle? get helperStyle => typography.bodySmall.copyWith(color: palette.foreground);
 
   @override
   TextStyle? get labelStyle => WidgetStateTextStyle.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return typography.labelLarge.copyWith(color: palette.onSurface.withOpacity(.38));
+            return typography.labelLarge.copyWith(color: palette.foreground.withOpacity(.38));
           }
 
           if (states.contains(WidgetState.error)) {
-            return typography.bodyLarge.copyWith(color: palette.error);
+            return typography.bodyLarge.copyWith(color: palette.destructive);
           }
 
           if (states.contains(WidgetState.focused)) {
-            return typography.bodyLarge.copyWith(color: palette.error);
+            return typography.bodyLarge.copyWith(color: palette.destructive);
           }
 
-          return typography.bodyLarge.copyWith(color: palette.onSurface.withOpacity(.78));
+          return typography.bodyLarge.copyWith(color: palette.foreground.withOpacity(.78));
         },
       );
 
@@ -192,14 +192,14 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   TextStyle? get floatingLabelStyle => WidgetStateTextStyle.resolveWith(
         (states) {
           if (states.contains(WidgetState.error)) {
-            return typography.labelLarge.copyWith(color: palette.error);
+            return typography.labelLarge.copyWith(color: palette.destructive);
           }
 
           if (states.contains(WidgetState.focused)) {
             return typography.labelLarge.copyWith(color: palette.primary);
           }
 
-          return typography.labelLarge.copyWith(color: palette.onSurface.withOpacity(.76));
+          return typography.labelLarge.copyWith(color: palette.foreground.withOpacity(.76));
         },
       );
 
@@ -216,7 +216,7 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   InputBorder? get focusedErrorBorder => OutlineInputBorder(
         borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
-          color: palette.error,
+          color: palette.destructive,
           width: 2,
         ),
       );
@@ -225,7 +225,7 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   InputBorder? get errorBorder => OutlineInputBorder(
         borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
-          color: palette.error,
+          color: palette.destructive,
         ),
       );
 
@@ -233,7 +233,7 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   InputBorder? get enabledBorder => OutlineInputBorder(
         borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
-          color: palette.outline,
+          color: palette.border,
         ),
       );
 
@@ -241,7 +241,7 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   InputBorder? get disabledBorder => OutlineInputBorder(
         borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
-          color: palette.onSurface.withOpacity(.08),
+          color: palette.foreground.withOpacity(.08),
         ),
       );
 }

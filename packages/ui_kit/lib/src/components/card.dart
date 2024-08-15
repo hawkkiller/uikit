@@ -45,8 +45,8 @@ class UiCard extends StatelessWidget {
         child: Material(
           type: MaterialType.card,
           elevation: 1,
-          color: color ?? Theme.of(context).colorPalette.surface,
-          shadowColor: Theme.of(context).colorPalette.shadow,
+          color: color ?? Theme.of(context).colorPalette.background,
+          shadowColor: Theme.of(context).colorPalette.foreground.withOpacity(.20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

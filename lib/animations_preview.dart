@@ -32,15 +32,9 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              UiText.titleMedium(
-                'Animation Preview',
-                color: Theme.of(context).colorPalette.onSurface,
-              ),
+              UiText.titleMedium('Animation Preview'),
               const SizedBox(height: 16),
-              UiText.titleSmall(
-                'Bounce In',
-                color: Theme.of(context).colorPalette.onSurface,
-              ),
+              UiText.titleSmall('Bounce In'),
               SizedBox(
                 height: 16,
                 width: 100,
@@ -52,10 +46,7 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
                 ),
               ),
               const SizedBox(height: 16),
-              UiText.titleSmall(
-                'Bounce Out',
-                color: Theme.of(context).colorPalette.onSurface,
-              ),
+              UiText.titleSmall('Bounce Out'),
               SizedBox(
                 height: 16,
                 width: 100,
@@ -67,10 +58,7 @@ class _AnimationsPreviewState extends State<AnimationsPreview> with SingleTicker
                 ),
               ),
               const SizedBox(height: 16),
-              UiText.titleSmall(
-                'Decelerate',
-                color: Theme.of(context).colorPalette.onSurface,
-              ),
+              UiText.titleSmall('Decelerate'),
               SizedBox(
                 height: 16,
                 width: 100,
@@ -101,7 +89,7 @@ class _AnimationPreview extends StatelessWidget {
       painter: _AnimationPainter(
         animation: animation,
         trackColor: Theme.of(context).colorPalette.primary,
-        thumbColor: Theme.of(context).colorPalette.onPrimary,
+        thumbColor: Theme.of(context).colorPalette.primaryForeground,
         thumbOutlineColor: Theme.of(context).colorPalette.primary,
       ),
       child: const SizedBox(height: 8),

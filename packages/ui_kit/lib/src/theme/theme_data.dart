@@ -3,90 +3,96 @@ import 'package:ui_kit/ui_kit.dart';
 /// An extension for theme to provide a color palette in context.
 class ColorPalette extends ThemeExtension<ColorPalette> {
   const ColorPalette({
+    required this.background,
+    required this.foreground,
+    required this.muted,
+    required this.mutedForeground,
+    required this.border,
     required this.primary,
-    required this.onPrimary,
+    required this.primaryForeground,
     required this.secondary,
-    required this.onSecondary,
-    required this.tertiary,
-    required this.onTertiary,
-    required this.error,
-    required this.onError,
-    required this.surface,
-    required this.onSurface,
-    required this.outline,
-    required this.focusOutline,
-    required this.shadow,
+    required this.secondaryForeground,
+    required this.accent,
+    required this.accentForeground,
+    required this.destructive,
+    required this.destructiveForeground,
+    required this.ring,
   });
 
-  /// The primary color of the app.
+  /// Default background color
+  final Color background;
+
+  /// Default foreground color
+  final Color foreground;
+
+  /// Muted backgrounds
+  final Color muted;
+
+  /// Color for text on muted backgrounds
+  final Color mutedForeground;
+
+  /// Default border color
+  final Color border;
+
+  /// Primary colors
   final Color primary;
 
-  /// The color used for text and icons displayed on top of the primary color.
-  final Color onPrimary;
+  /// Color for text on primary colors
+  final Color primaryForeground;
 
-  /// The secondary color of the app.
+  /// Secondary colors
   final Color secondary;
 
-  /// The color used for text and icons displayed on top of the secondary color.
-  final Color onSecondary;
+  /// Color for text on secondary colors
+  final Color secondaryForeground;
 
-  /// The tertiary color of the app.
-  final Color tertiary;
+  /// Used for accents such as hover effects
+  final Color accent;
 
-  /// The color used for text and icons displayed on top of the tertiary color.
-  final Color onTertiary;
+  /// Used for accents such as hover effects
+  final Color accentForeground;
 
-  /// The color used to indicate errors.
-  final Color error;
+  /// Used for destructive actions
+  final Color destructive;
 
-  /// The color used for text and icons displayed on top of the error color.
-  final Color onError;
+  /// Color for text on destructive actions
+  final Color destructiveForeground;
 
-  /// The color of surfaces, such as cards or sheets.
-  final Color surface;
-
-  /// The color used for text and icons displayed on top of the surface color.
-  final Color onSurface;
-
-  /// The color used for outlines and borders.
-  final Color outline;
-
-  /// The color used for focus outlines.
-  final Color focusOutline;
-
-  /// The color used for shadows.
-  final Color shadow;
+  /// The ring color of the app, used for focus rings.
+  final Color ring;
 
   @override
   ThemeExtension<ColorPalette> copyWith({
-    Color? primary,
-    Color? onPrimary,
-    Color? secondary,
-    Color? onSecondary,
-    Color? tertiary,
-    Color? onTertiary,
-    Color? error,
-    Color? onError,
     Color? background,
-    Color? onBackground,
-    Color? surface,
-    Color? onSurface,
-    Color? outline,
+    Color? foreground,
+    Color? muted,
+    Color? mutedForeground,
+    Color? border,
+    Color? primary,
+    Color? primaryForeground,
+    Color? secondary,
+    Color? secondaryForeground,
+    Color? accent,
+    Color? accentForeground,
+    Color? destructive,
+    Color? destructiveForeground,
+    Color? ring,
   }) =>
       ColorPalette(
+        background: background ?? this.background,
+        foreground: foreground ?? this.foreground,
+        muted: muted ?? this.muted,
+        mutedForeground: mutedForeground ?? this.mutedForeground,
+        border: border ?? this.border,
         primary: primary ?? this.primary,
-        onPrimary: onPrimary ?? this.onPrimary,
+        primaryForeground: primaryForeground ?? this.primaryForeground,
         secondary: secondary ?? this.secondary,
-        onSecondary: onSecondary ?? this.onSecondary,
-        tertiary: tertiary ?? this.tertiary,
-        onTertiary: onTertiary ?? this.onTertiary,
-        error: error ?? this.error,
-        onError: onError ?? this.onError,
-        surface: surface ?? this.surface,
-        onSurface: onSurface ?? this.onSurface,
-        outline: outline ?? this.outline,
-        focusOutline: focusOutline,
-        shadow: shadow,
+        secondaryForeground: secondaryForeground ?? this.secondaryForeground,
+        accent: accent ?? this.accent,
+        accentForeground: accentForeground ?? this.accentForeground,
+        destructive: destructive ?? this.destructive,
+        destructiveForeground: destructiveForeground ?? this.destructiveForeground,
+        ring: ring ?? this.ring,
       );
 
   @override
@@ -99,36 +105,38 @@ class ColorPalette extends ThemeExtension<ColorPalette> {
     }
 
     return ColorPalette(
+      background: Color.lerp(background, other.background, t)!,
+      foreground: Color.lerp(foreground, other.foreground, t)!,
+      muted: Color.lerp(muted, other.muted, t)!,
+      mutedForeground: Color.lerp(mutedForeground, other.mutedForeground, t)!,
+      border: Color.lerp(border, other.border, t)!,
       primary: Color.lerp(primary, other.primary, t)!,
-      onPrimary: Color.lerp(onPrimary, other.onPrimary, t)!,
+      primaryForeground: Color.lerp(primaryForeground, other.primaryForeground, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,
-      onSecondary: Color.lerp(onSecondary, other.onSecondary, t)!,
-      tertiary: Color.lerp(tertiary, other.tertiary, t)!,
-      onTertiary: Color.lerp(onTertiary, other.onTertiary, t)!,
-      error: Color.lerp(error, other.error, t)!,
-      onError: Color.lerp(onError, other.onError, t)!,
-      surface: Color.lerp(surface, other.surface, t)!,
-      onSurface: Color.lerp(onSurface, other.onSurface, t)!,
-      outline: Color.lerp(outline, other.outline, t)!,
-      focusOutline: Color.lerp(focusOutline, other.focusOutline, t)!,
-      shadow: Color.lerp(shadow, other.shadow, t)!,
+      secondaryForeground: Color.lerp(secondaryForeground, other.secondaryForeground, t)!,
+      accent: Color.lerp(accent, other.accent, t)!,
+      accentForeground: Color.lerp(accentForeground, other.accentForeground, t)!,
+      destructive: Color.lerp(destructive, other.destructive, t)!,
+      destructiveForeground: Color.lerp(destructiveForeground, other.destructiveForeground, t)!,
+      ring: Color.lerp(ring, other.ring, t)!,
     );
   }
 
   Map<String, Color> toMap() => {
+        'Background': background,
+        'Foreground': foreground,
+        'Muted': muted,
+        'Muted Foreground': mutedForeground,
+        'Border': border,
         'Primary': primary,
-        'On Primary': onPrimary,
+        'Primary Foreground': primaryForeground,
         'Secondary': secondary,
-        'On Secondary': onSecondary,
-        'Tertiary': tertiary,
-        'On Tertiary': onTertiary,
-        'Error': error,
-        'On Error': onError,
-        'Surface': surface,
-        'On Surface': onSurface,
-        'Outline': outline,
-        'Focus Outline': focusOutline,
-        'Shadow': shadow,
+        'Secondary Foreground': secondaryForeground,
+        'Accent': accent,
+        'Accent Foreground': accentForeground,
+        'Destructive': destructive,
+        'Destructive Foreground': destructiveForeground,
+        'Ring': ring,
       };
 }
 
@@ -265,7 +273,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
 /// An extension for theme to get color palette and typography from [BuildContext].
 extension ThemeDataExtensions on ThemeData {
   /// The color palette set for the app.
-  ColorPalette get colorPalette => extension<ColorPalette>() ?? lightPalette;
+  ColorPalette get colorPalette => extension<ColorPalette>() ?? lightShadcnPalette;
 
   /// The typography set for the app.
   AppTypography get appTypography => extension<AppTypography>() ?? defaultTypography;

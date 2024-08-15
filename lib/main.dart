@@ -14,15 +14,9 @@ void main() {
   runApp(const MainApp());
 }
 
-final lightTheme = createThemeData(
+final theme = createThemeData(
   brightness: Brightness.light,
-  palette: lightPalette,
-  typography: defaultTypography,
-);
-
-final darkTheme = createThemeData(
-  brightness: Brightness.dark,
-  palette: darkPalette,
+  palette: lightShadcnPalette,
   typography: defaultTypography,
 );
 
@@ -36,8 +30,7 @@ class MainApp extends StatelessWidget {
           builder: (context, themeMode, _) => MaterialApp(
             debugShowCheckedModeBanner: false,
             themeMode: themeMode,
-            theme: lightTheme,
-            darkTheme: darkTheme,
+            theme: theme,
             home: const UiPreview(),
           ),
         ),
@@ -54,6 +47,7 @@ class UiPreview extends StatelessWidget {
     final brightness = Theme.of(context).brightness;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorPalette.background,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

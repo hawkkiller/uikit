@@ -13,11 +13,7 @@ class ColorPalettePreview extends StatelessWidget {
             children: [
               UiText.titleMedium('Light'),
               const SizedBox(height: 8),
-              _PalettePreview(colorPalette: lightPalette),
-              const SizedBox(height: 24),
-              UiText.titleMedium('Dark'),
-              const SizedBox(height: 8),
-              _PalettePreview(colorPalette: darkPalette),
+              const _PalettePreview(colorPalette: lightShadcnPalette),
             ],
           ),
         ),

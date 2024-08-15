@@ -8,7 +8,11 @@ enum FilledButtonVariant {
 
   /// A button for alternative actions in the app.
   /// For example, the "Cancel" button in a form.
-  secondary;
+  secondary,
+
+  /// A button for destructive actions in the app.
+  /// For example, the "Delete" button in a form.
+  destructive,
 }
 
 /// Different variants of a [UiOutlinedButton].
@@ -487,14 +491,16 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(0.38);
+            return colorPalette.foreground.withOpacity(0.38);
           }
 
           switch (variant) {
             case FilledButtonVariant.primary:
-              return colorPalette.onPrimary;
+              return colorPalette.primaryForeground;
             case FilledButtonVariant.secondary:
-              return colorPalette.onSecondary;
+              return colorPalette.secondaryForeground;
+            case FilledButtonVariant.destructive:
+              return colorPalette.destructiveForeground;
           }
         },
       );
@@ -503,7 +509,7 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(.12);
+            return colorPalette.foreground.withOpacity(.12);
           }
 
           switch (variant) {
@@ -511,6 +517,8 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
               return colorPalette.primary;
             case FilledButtonVariant.secondary:
               return colorPalette.secondary;
+            case FilledButtonVariant.destructive:
+              return colorPalette.destructiveForeground;
           }
         },
       );
@@ -519,13 +527,13 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get overlayColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
         if (states.contains(WidgetState.pressed)) {
-          return colorPalette.onPrimary.withOpacity(0.1);
+          return colorPalette.primaryForeground.withOpacity(0.1);
         }
         if (states.contains(WidgetState.hovered)) {
-          return colorPalette.onPrimary.withOpacity(0.08);
+          return colorPalette.primaryForeground.withOpacity(0.08);
         }
         if (states.contains(WidgetState.focused)) {
-          return colorPalette.onPrimary.withOpacity(0.1);
+          return colorPalette.primaryForeground.withOpacity(0.1);
         }
         return null;
       });
@@ -549,7 +557,8 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
       });
 
   @override
-  WidgetStateProperty<Color>? get shadowColor => WidgetStatePropertyAll<Color>(colorPalette.shadow);
+  WidgetStateProperty<Color>? get shadowColor =>
+      WidgetStatePropertyAll<Color>(colorPalette.foreground.withOpacity(.20));
 }
 
 class _OutlinedButtonStyle extends _UiBaseButtonStyle {
@@ -566,7 +575,7 @@ class _OutlinedButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(0.38);
+            return colorPalette.foreground.withOpacity(0.38);
           }
 
           switch (variant) {
@@ -608,7 +617,7 @@ class _OutlinedButtonStyle extends _UiBaseButtonStyle {
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
             return StadiumBorder(
-              side: BorderSide(color: colorPalette.onSurface.withOpacity(0.12), width: 1),
+              side: BorderSide(color: colorPalette.foreground.withOpacity(0.12), width: 1),
             );
           }
 
@@ -645,10 +654,10 @@ class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(0.38);
+            return colorPalette.foreground.withOpacity(0.38);
           }
 
-          return colorPalette.onSurface;
+          return colorPalette.foreground;
         },
       );
 
@@ -656,13 +665,13 @@ class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.pressed)) {
-            return colorPalette.onSurface.withOpacity(0.1);
+            return colorPalette.foreground.withOpacity(0.1);
           }
           if (states.contains(WidgetState.hovered)) {
-            return colorPalette.onSurface.withOpacity(0.08);
+            return colorPalette.foreground.withOpacity(0.08);
           }
           if (states.contains(WidgetState.focused)) {
-            return colorPalette.onSurface.withOpacity(0.1);
+            return colorPalette.foreground.withOpacity(0.1);
           }
 
           return null;
@@ -673,7 +682,7 @@ class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStatePropertyAll(
         StadiumBorder(
           side: BorderSide(
-            color: colorPalette.outline,
+            color: colorPalette.border,
             width: 1,
           ),
         ),
@@ -690,7 +699,7 @@ class _IconButtonFilledStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(0.12);
+            return colorPalette.foreground.withOpacity(0.12);
           }
           if (states.contains(WidgetState.selected)) {
             return colorPalette.primary;
@@ -704,13 +713,13 @@ class _IconButtonFilledStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(0.38);
+            return colorPalette.foreground.withOpacity(0.38);
           }
           if (states.contains(WidgetState.selected)) {
-            return colorPalette.onPrimary;
+            return colorPalette.primaryForeground;
           }
 
-          return colorPalette.onPrimary;
+          return colorPalette.primaryForeground;
         },
       );
 
@@ -718,13 +727,13 @@ class _IconButtonFilledStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.pressed)) {
-            return colorPalette.onPrimary.withOpacity(0.1);
+            return colorPalette.primaryForeground.withOpacity(0.1);
           }
           if (states.contains(WidgetState.hovered)) {
-            return colorPalette.onPrimary.withOpacity(0.08);
+            return colorPalette.primaryForeground.withOpacity(0.08);
           }
           if (states.contains(WidgetState.focused)) {
-            return colorPalette.onPrimary.withOpacity(0.1);
+            return colorPalette.primaryForeground.withOpacity(0.1);
           }
 
           return null;
@@ -746,23 +755,23 @@ class _IconButtonBaseStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get foregroundColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
         if (states.contains(WidgetState.disabled)) {
-          return colorPalette.onSurface.withOpacity(0.38);
+          return colorPalette.foreground.withOpacity(0.38);
         }
 
-        return colorPalette.onSurface;
+        return colorPalette.foreground;
       });
 
   @override
   WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.pressed)) {
-            return colorPalette.onSurface.withOpacity(0.1);
+            return colorPalette.foreground.withOpacity(0.1);
           }
           if (states.contains(WidgetState.hovered)) {
-            return colorPalette.onSurface.withOpacity(0.08);
+            return colorPalette.foreground.withOpacity(0.08);
           }
           if (states.contains(WidgetState.focused)) {
-            return colorPalette.onSurface.withOpacity(0.1);
+            return colorPalette.foreground.withOpacity(0.1);
           }
           return null;
         },
@@ -793,7 +802,7 @@ class _TextButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.onSurface.withOpacity(0.38);
+            return colorPalette.foreground.withOpacity(0.38);
           }
 
           return colorPalette.primary;
@@ -836,7 +845,11 @@ class _UiBaseButtonStyle extends ButtonStyle {
   Duration? get animationDuration => const Duration(milliseconds: 200);
 
   @override
-  WidgetStateProperty<OutlinedBorder?>? get shape => const WidgetStatePropertyAll(StadiumBorder());
+  WidgetStateProperty<OutlinedBorder?>? get shape => const WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+      );
 
   @override
   MaterialTapTargetSize? get tapTargetSize => MaterialTapTargetSize.shrinkWrap;
@@ -887,16 +900,14 @@ class _UiBaseButtonStyle extends ButtonStyle {
   Widget _backgroundBuilder(BuildContext context, Set<WidgetState> states, Widget? child) {
     if (child == null) return const SizedBox.shrink();
 
-    if (states.contains(WidgetState.focused)) {
-      return OutlineFocusButtonBorder(
-        showBorder: true,
-        focusedBorderColor: colorPalette.focusOutline,
-        focusedBorderWidth: 2,
-        child: child,
-      );
-    }
-
-    return child;
+    return OutlineFocusButtonBorder(
+      showBorder: states.contains(WidgetState.focused),
+      border: RoundedRectangleBorder(
+        side: BorderSide(color: colorPalette.ring, width: 2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: child,
+    );
   }
 }
 
@@ -932,22 +943,19 @@ class OutlineFocusButtonBorder extends StatelessWidget {
   const OutlineFocusButtonBorder({
     required this.child,
     required this.showBorder,
-    required this.focusedBorderColor,
-    required this.focusedBorderWidth,
+    required this.border,
     super.key,
   });
 
   final Widget child;
   final bool showBorder;
-  final Color focusedBorderColor;
-  final double focusedBorderWidth;
+  final ShapeBorder border;
 
   @override
   Widget build(BuildContext context) => CustomPaint(
         painter: _OutlineFocusButtonBorderPainter(
           showBorder: showBorder,
-          focusedBorderColor: focusedBorderColor,
-          focusedBorderWidth: focusedBorderWidth,
+          border: border,
         ),
         child: child,
       );
@@ -956,40 +964,25 @@ class OutlineFocusButtonBorder extends StatelessWidget {
 class _OutlineFocusButtonBorderPainter extends CustomPainter {
   _OutlineFocusButtonBorderPainter({
     required bool showBorder,
-    required Color focusedBorderColor,
-    required double focusedBorderWidth,
+    required ShapeBorder border,
   })  : _showBorder = showBorder,
-        _focusedBorderWidth = focusedBorderWidth,
-        _paint = Paint()
-          ..color = focusedBorderColor
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = focusedBorderWidth;
+        _border = border;
 
   final bool _showBorder;
-  final double _focusedBorderWidth;
-  final Paint _paint;
+  final ShapeBorder _border;
 
   @override
   void paint(Canvas canvas, Size size) {
     if (!_showBorder) return;
 
-    canvas.drawRRect(
-      RRect.fromLTRBR(
-        -_focusedBorderWidth,
-        -_focusedBorderWidth,
-        size.width + _focusedBorderWidth,
-        size.height + _focusedBorderWidth,
-        Radius.circular(size.height / 2 + _focusedBorderWidth),
-      ),
-      _paint,
-    );
+    final rect = Offset.zero & size;
+
+    _border.paint(canvas, rect);
   }
 
   @override
   bool shouldRepaint(_OutlineFocusButtonBorderPainter oldDelegate) =>
-      _showBorder != oldDelegate._showBorder ||
-      _paint.color != oldDelegate._paint.color ||
-      _paint.strokeWidth != oldDelegate._paint.strokeWidth;
+      _showBorder != oldDelegate._showBorder || _border != oldDelegate._border;
 
   @override
   bool shouldRebuildSemantics(_OutlineFocusButtonBorderPainter oldDelegate) => false;

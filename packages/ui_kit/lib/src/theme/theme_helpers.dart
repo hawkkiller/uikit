@@ -1,7 +1,22 @@
 import 'package:ui_kit/ui_kit.dart';
 
-final lightPalette = createPaletteFor(brightness: Brightness.light);
-final darkPalette = createPaletteFor(brightness: Brightness.dark);
+const lightShadcnPalette = ColorPalette(
+  background: Color(0xFFFFFFFF), // HSL: 0 0% 100%
+  foreground: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
+  muted: Color(0xF1F5F9FF), // HSL: 210 40% 96.1%
+  mutedForeground: Color(0xFF64748B), // HSL: 215.4 16.3% 46.9%
+  border: Color(0xFFCDD5E1), // HSL: 214.3 31.8% 91.4%
+  primary: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
+  primaryForeground: Color(0xFFFFFFFF), // HSL: 210 40% 98%
+  secondary: Color(0xF1F5F9FF), // HSL: 210 40% 96.1%
+  secondaryForeground: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
+  accent: Color(0xF1F5F9FF), // HSL: 210 40% 96.1%
+  accentForeground: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
+  destructive: Color(0xFFFF0000), // HSL: 0 100% 50%
+  destructiveForeground: Color(0xFFFFFFFF), // HSL: 210 40% 98%
+  ring: Color(0xFF64748B), // HSL: 215 20.2% 65.1%
+);
+
 final AppTypography defaultTypography = AppTypography(
   displayLarge: _material2021.displayLarge!,
   displayMedium: _material2021.displayMedium!,
@@ -35,31 +50,6 @@ ThemeData createThemeData({
         typography,
       },
     );
-
-ColorPalette createPaletteFor({
-  Brightness brightness = Brightness.light,
-}) {
-  final materialColorScheme = ColorScheme.fromSeed(
-    seedColor: const Color.fromARGB(255, 128, 63, 220),
-    brightness: brightness,
-  );
-
-  return ColorPalette(
-    primary: materialColorScheme.primary,
-    onPrimary: materialColorScheme.onPrimary,
-    secondary: materialColorScheme.secondary,
-    onSecondary: materialColorScheme.onSecondary,
-    tertiary: materialColorScheme.tertiary,
-    onTertiary: materialColorScheme.onTertiary,
-    error: materialColorScheme.error,
-    onError: materialColorScheme.onError,
-    surface: materialColorScheme.surface,
-    onSurface: materialColorScheme.onSurface,
-    outline: materialColorScheme.outline,
-    focusOutline: const Color(0xFF0075C4),
-    shadow: materialColorScheme.shadow,
-  );
-}
 
 // use default styles from material2021
 final _material2021 = Typography.material2021().tall;
