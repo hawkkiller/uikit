@@ -273,7 +273,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
 /// An extension for theme to get color palette and typography from [BuildContext].
 extension ThemeDataExtensions on ThemeData {
   /// The color palette set for the app.
-  ColorPalette get colorPalette => extension<ColorPalette>() ?? lightShadcnPalette;
+  ColorPalette get colorPalette => extension<ColorPalette>() ?? lightColorPalette;
 
   /// The typography set for the app.
   AppTypography get appTypography => extension<AppTypography>() ?? defaultTypography;

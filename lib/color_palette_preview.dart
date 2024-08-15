@@ -13,7 +13,11 @@ class ColorPalettePreview extends StatelessWidget {
             children: [
               UiText.titleMedium('Light'),
               const SizedBox(height: 8),
-              const _PalettePreview(colorPalette: lightShadcnPalette),
+              _PalettePreview(colorPalette: lightColorPalette),
+              const SizedBox(height: 16),
+              UiText.titleMedium('Dark'),
+              const SizedBox(height: 8),
+              _PalettePreview(colorPalette: darkColorPalette),
             ],
           ),
         ),
@@ -50,7 +54,8 @@ class _PalettePreview extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                UiText.labelMedium(name),
+                const SizedBox(height: 8),
+                UiText.labelMedium(name, textAlign: TextAlign.center),
               ],
             ),
           );

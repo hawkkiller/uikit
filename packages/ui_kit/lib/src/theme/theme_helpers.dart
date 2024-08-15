@@ -1,21 +1,7 @@
 import 'package:ui_kit/ui_kit.dart';
 
-const lightShadcnPalette = ColorPalette(
-  background: Color(0xFFFFFFFF), // HSL: 0 0% 100%
-  foreground: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
-  muted: Color(0xF1F5F9FF), // HSL: 210 40% 96.1%
-  mutedForeground: Color(0xFF64748B), // HSL: 215.4 16.3% 46.9%
-  border: Color(0xFFCDD5E1), // HSL: 214.3 31.8% 91.4%
-  primary: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
-  primaryForeground: Color(0xFFFFFFFF), // HSL: 210 40% 98%
-  secondary: Color(0xF1F5F9FF), // HSL: 210 40% 96.1%
-  secondaryForeground: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
-  accent: Color(0xF1F5F9FF), // HSL: 210 40% 96.1%
-  accentForeground: Color(0xFF1C1917), // HSL: 222.2 47.4% 11.2%
-  destructive: Color(0xFFFF0000), // HSL: 0 100% 50%
-  destructiveForeground: Color(0xFFFFFFFF), // HSL: 210 40% 98%
-  ring: Color(0xFF64748B), // HSL: 215 20.2% 65.1%
-);
+final lightColorPalette = generatePaletteForBrightness(Brightness.light);
+final darkColorPalette = generatePaletteForBrightness(Brightness.dark);
 
 final AppTypography defaultTypography = AppTypography(
   displayLarge: _material2021.displayLarge!,
@@ -45,11 +31,33 @@ ThemeData createThemeData({
 }) =>
     ThemeData(
       brightness: brightness,
-      extensions: {
-        palette,
-        typography,
-      },
+      extensions: {palette, typography},
     );
+
+ColorPalette generatePaletteForBrightness(Brightness brightness) {
+  final materialPalette = ColorScheme.fromSeed(
+    seedColor: Colors.transparent,
+    dynamicSchemeVariant: DynamicSchemeVariant.monochrome,
+    brightness: brightness,
+  );
+
+  return ColorPalette(
+    background: materialPalette.surface,
+    foreground: materialPalette.onSurface,
+    muted: materialPalette.onSurface.withOpacity(.12),
+    mutedForeground: materialPalette.onSurface.withOpacity(.38),
+    border: materialPalette.onSurface.withOpacity(.12),
+    primary: materialPalette.primary,
+    primaryForeground: materialPalette.onPrimary,
+    secondary: materialPalette.secondary,
+    secondaryForeground: materialPalette.onSecondary,
+    accent: materialPalette.tertiary,
+    accentForeground: materialPalette.onTertiary,
+    destructive: materialPalette.error,
+    destructiveForeground: materialPalette.onError,
+    ring: const Color.fromARGB(255, 60, 139, 250),
+  );
+}
 
 // use default styles from material2021
 final _material2021 = Typography.material2021().tall;

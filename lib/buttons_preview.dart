@@ -16,8 +16,8 @@ class ButtonsPreview extends StatelessWidget {
               children: [
                 _FilledPrimaryButton(),
                 _FilledSecondaryButton(),
-                _OutlinedPrimaryButton(),
-                _OutlinedSecondaryButton(),
+                _FilledDestructiveButton(),
+                _OutlinedButton(),
                 _IconButtons(),
                 _TextButton(),
               ],
@@ -62,12 +62,12 @@ class _IconButtons extends StatelessWidget {
           children: [
             UiText.titleSmall('Icon Buttons'),
             const SizedBox(height: 16),
-            UiIconButton.filled(
+            UiIconButton.standard(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
             ),
             const SizedBox(height: 8),
-            UiIconButton.filled(
+            UiIconButton.standard(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
@@ -83,24 +83,13 @@ class _IconButtons extends StatelessWidget {
               icon: const Icon(Icons.add_rounded),
               enabled: false,
             ),
-            const SizedBox(height: 8),
-            UiIconButton.standard(
-              onPressed: () {},
-              icon: const Icon(Icons.add_rounded),
-            ),
-            const SizedBox(height: 8),
-            UiIconButton.standard(
-              onPressed: () {},
-              icon: const Icon(Icons.add_rounded),
-              enabled: false,
-            ),
           ],
         ),
       );
 }
 
-class _OutlinedPrimaryButton extends StatelessWidget {
-  const _OutlinedPrimaryButton();
+class _OutlinedButton extends StatelessWidget {
+  const _OutlinedButton();
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -108,84 +97,33 @@ class _OutlinedPrimaryButton extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            UiText.titleSmall('Outlined Primary Button'),
+            UiText.titleSmall('Outlined Button'),
             const SizedBox(height: 16),
-            UiOutlinedButton.primary(
+            UiOutlinedButton(
               onPressed: () {},
-              label: const Text('standard'),
+              label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton.primary(
+            UiOutlinedButton(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
-              label: const Text('with icon'),
+              label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton.primary(
+            UiOutlinedButton(
               onPressed: () {},
               enabled: false,
-              label: const Text('disabled'),
+              label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton.primary(
-              onPressed: () {},
-              icon: const Icon(Icons.add_rounded),
-              enabled: false,
-              label: const Text('with icon'),
-            ),
-            const SizedBox(height: 8),
-            UiOutlinedButton.primary(
-              onPressed: () {},
-              enabled: false,
-              label: SizedBox.square(
-                dimension: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-}
-
-class _OutlinedSecondaryButton extends StatelessWidget {
-  const _OutlinedSecondaryButton();
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 200,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            UiText.titleSmall('Outlined Secondary Button'),
-            const SizedBox(height: 16),
-            UiOutlinedButton.secondary(
-              onPressed: () {},
-              label: const Text('standard'),
-            ),
-            const SizedBox(height: 8),
-            UiOutlinedButton.secondary(
-              icon: const Icon(Icons.add_rounded),
-              onPressed: () {},
-              label: const Text('with icon'),
-            ),
-            const SizedBox(height: 8),
-            UiOutlinedButton.secondary(
-              onPressed: () {},
-              enabled: false,
-              label: const Text('disabled'),
-            ),
-            const SizedBox(height: 8),
-            UiOutlinedButton.secondary(
+            UiOutlinedButton(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
-              label: const Text('with icon'),
+              label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton.secondary(
+            UiOutlinedButton(
               onPressed: () {},
               enabled: false,
               label: SizedBox.square(
@@ -214,26 +152,26 @@ class _FilledSecondaryButton extends StatelessWidget {
             const SizedBox(height: 16),
             UiFilledButton.secondary(
               onPressed: () {},
-              label: const Text('standard'),
+              label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.secondary(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
-              label: const Text('with icon'),
+              label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.secondary(
               onPressed: () {},
               enabled: false,
-              label: const Text('disabled'),
+              label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.secondary(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
-              label: const Text('with icon'),
+              label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.secondary(
@@ -243,7 +181,7 @@ class _FilledSecondaryButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
+                  color: Theme.of(context).colorPalette.secondary.withOpacity(.38),
                 ),
               ),
             ),
@@ -265,26 +203,26 @@ class _FilledPrimaryButton extends StatelessWidget {
             const SizedBox(height: 16),
             UiFilledButton.primary(
               onPressed: () {},
-              label: const Text('standard'),
+              label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.primary(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
-              label: const Text('with icon'),
+              label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.primary(
               onPressed: () {},
               enabled: false,
-              label: const Text('disabled'),
+              label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.primary(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
-              label: const Text('with icon'),
+              label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
             UiFilledButton.primary(
@@ -294,7 +232,58 @@ class _FilledPrimaryButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorPalette.foreground.withOpacity(.38),
+                  color: Theme.of(context).colorPalette.primary.withOpacity(.38),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+class _FilledDestructiveButton extends StatelessWidget {
+  const _FilledDestructiveButton();
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UiText.titleSmall('Filled Destructive Button'),
+            const SizedBox(height: 16),
+            UiFilledButton.destructive(
+              onPressed: () {},
+              label: const Text('Destructive'),
+            ),
+            const SizedBox(height: 8),
+            UiFilledButton.destructive(
+              icon: const Icon(Icons.add_rounded),
+              onPressed: () {},
+              label: const Text('Destructive'),
+            ),
+            const SizedBox(height: 8),
+            UiFilledButton.destructive(
+              onPressed: () {},
+              enabled: false,
+              label: const Text('Destructive'),
+            ),
+            const SizedBox(height: 8),
+            UiFilledButton.destructive(
+              onPressed: () {},
+              icon: const Icon(Icons.add_rounded),
+              enabled: false,
+              label: const Text('Destructive'),
+            ),
+            const SizedBox(height: 8),
+            UiFilledButton.destructive(
+              onPressed: () {},
+              enabled: false,
+              label: SizedBox.square(
+                dimension: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Theme.of(context).colorPalette.destructive.withOpacity(.38),
                 ),
               ),
             ),

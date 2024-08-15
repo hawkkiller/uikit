@@ -14,9 +14,15 @@ void main() {
   runApp(const MainApp());
 }
 
-final theme = createThemeData(
+final lightTheme = createThemeData(
   brightness: Brightness.light,
-  palette: lightShadcnPalette,
+  palette: lightColorPalette,
+  typography: defaultTypography,
+);
+
+final darkTheme = createThemeData(
+  brightness: Brightness.dark,
+  palette: darkColorPalette,
   typography: defaultTypography,
 );
 
@@ -27,12 +33,15 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) => WindowSizeScope(
         child: ValueListenableBuilder(
           valueListenable: themeModeSwitcher,
-          builder: (context, themeMode, _) => MaterialApp(
-            debugShowCheckedModeBanner: false,
-            themeMode: themeMode,
-            theme: theme,
-            home: const UiPreview(),
-          ),
+          builder: (context, themeMode, _) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              themeMode: themeMode,
+              darkTheme: darkTheme,
+              theme: lightTheme,
+              home: const UiPreview(),
+            );
+          },
         ),
       );
 }
@@ -51,14 +60,18 @@ class UiPreview extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            backgroundColor: Theme.of(context).colorPalette.background,
+            surfaceTintColor: Theme.of(context).colorPalette.background,
             pinned: true,
             actions: [
               UiIconButton.standard(
                 icon: brightness == Brightness.light
                     ? const Icon(Icons.dark_mode_rounded)
                     : const Icon(Icons.light_mode_rounded),
-                onPressed: () => themeModeSwitcher.value =
-                    brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light,
+                onPressed: () {
+                  themeModeSwitcher.value =
+                      brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light;
+                },
               ),
             ],
           ),

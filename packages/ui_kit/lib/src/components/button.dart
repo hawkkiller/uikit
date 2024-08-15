@@ -15,36 +15,22 @@ enum FilledButtonVariant {
   destructive,
 }
 
-/// Different variants of a [UiOutlinedButton].
-enum OutlinedButtonVariant {
-  /// A button for primary actions in the app.
-  primary,
-
-  /// A button for alternative actions in the app.
-  secondary,
-}
-
-/// The variant of an [UiIconButton].
 enum IconButtonVariant {
-  /// A button that is filled with color.
-  filled,
-
-  /// A button that is outlined.
-  outlined,
-
-  /// A button that does not have a background nor an outline.
   standard,
+  outlined,
 }
 
 /// A filled button that follows the UI Kit design system.
 class UiFilledButton extends ButtonStyleButton {
-  const UiFilledButton._({
-    required super.child,
+  /// A factory constructor for a primary [UiFilledButton].
+  UiFilledButton.primary({
     required VoidCallback? onPressed,
-    required this.variant,
     bool enabled = true,
-    super.autofocus = false,
+    IconAlignment iconAlignment = IconAlignment.start,
+    Widget? label,
+    Widget? icon,
     VoidCallback? onLongPress,
+    super.autofocus = false,
     super.onHover,
     super.onFocusChange,
     super.style,
@@ -53,80 +39,60 @@ class UiFilledButton extends ButtonStyleButton {
     super.statesController,
     super.isSemanticButton,
     super.key,
-  }) : super(
+  })  : variant = FilledButtonVariant.primary,
+        super(
+          child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
           onPressed: enabled ? onPressed : null,
           onLongPress: enabled ? onLongPress : null,
         );
 
-  /// A factory constructor for a primary [UiFilledButton].
-  factory UiFilledButton.primary({
-    required Widget? label,
-    required VoidCallback? onPressed,
-    Widget? icon,
-    bool enabled = true,
-    bool autofocus = false,
-    VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
-    IconAlignment iconAlignment = IconAlignment.start,
-    Key? key,
-  }) =>
-      UiFilledButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: FilledButtonVariant.primary,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
-      );
-
   /// A factory constructor for a secondary [UiFilledButton].
-  factory UiFilledButton.secondary({
-    required Widget? label,
+  UiFilledButton.secondary({
     required VoidCallback? onPressed,
-    Widget? icon,
     bool enabled = true,
-    bool autofocus = false,
-    VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
     IconAlignment iconAlignment = IconAlignment.start,
-    Key? key,
-  }) =>
-      UiFilledButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: FilledButtonVariant.secondary,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
-      );
+    Widget? label,
+    Widget? icon,
+    VoidCallback? onLongPress,
+    super.autofocus = false,
+    super.onHover,
+    super.onFocusChange,
+    super.style,
+    super.focusNode,
+    super.clipBehavior,
+    super.statesController,
+    super.isSemanticButton,
+    super.key,
+  })  : variant = FilledButtonVariant.secondary,
+        super(
+          child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
+
+  /// A factory constructor for a destructive [UiFilledButton].
+  UiFilledButton.destructive({
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    IconAlignment iconAlignment = IconAlignment.start,
+    Widget? label,
+    Widget? icon,
+    VoidCallback? onLongPress,
+    super.autofocus = false,
+    super.onHover,
+    super.onFocusChange,
+    super.style,
+    super.focusNode,
+    super.clipBehavior,
+    super.statesController,
+    super.isSemanticButton,
+    super.key,
+  })  : variant = FilledButtonVariant.destructive,
+        super(
+          child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
 
   /// The variant of the button.
   final FilledButtonVariant variant;
@@ -150,12 +116,13 @@ class UiFilledButton extends ButtonStyleButton {
 }
 
 class UiOutlinedButton extends ButtonStyleButton {
-  const UiOutlinedButton._({
-    required super.child,
-    required this.variant,
+  UiOutlinedButton({
     required VoidCallback? onPressed,
+    Widget? label,
+    Widget? icon,
     VoidCallback? onLongPress,
     bool enabled = true,
+    IconAlignment iconAlignment = IconAlignment.start,
     super.autofocus = false,
     super.onHover,
     super.onFocusChange,
@@ -166,79 +133,13 @@ class UiOutlinedButton extends ButtonStyleButton {
     super.isSemanticButton,
     super.key,
   }) : super(
-          onPressed: enabled ? onPressed : null,
-          onLongPress: enabled ? onLongPress : null,
-        );
-
-  factory UiOutlinedButton.primary({
-    required Widget? label,
-    required VoidCallback? onPressed,
-    Widget? icon,
-    bool enabled = true,
-    bool autofocus = false,
-    VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
-    IconAlignment iconAlignment = IconAlignment.start,
-    Key? key,
-  }) =>
-      UiOutlinedButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: OutlinedButtonVariant.primary,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
-      );
-
-  factory UiOutlinedButton.secondary({
-    required Widget? label,
-    required VoidCallback? onPressed,
-    Widget? icon,
-    bool enabled = true,
-    bool autofocus = false,
-    VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
-    IconAlignment iconAlignment = IconAlignment.start,
-    Key? key,
-  }) =>
-      UiOutlinedButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: OutlinedButtonVariant.secondary,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: _ButtonIconAndLabel(icon: icon, label: label, iconAlignment: iconAlignment),
-      );
-
-  final OutlinedButtonVariant variant;
+            onPressed: enabled ? onPressed : null,
+            onLongPress: enabled ? onLongPress : null,
+            child: _ButtonIconAndLabel(
+              icon: icon,
+              label: label,
+              iconAlignment: iconAlignment,
+            ));
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
@@ -250,7 +151,6 @@ class UiOutlinedButton extends ButtonStyleButton {
     return _OutlinedButtonStyle(
       colorPalette: colorPalette,
       typography: typography,
-      variant: variant,
     );
   }
 
@@ -259,13 +159,12 @@ class UiOutlinedButton extends ButtonStyleButton {
 }
 
 class UiIconButton extends ButtonStyleButton {
-  const UiIconButton._({
-    required super.child,
-    required this.variant,
+  const UiIconButton.standard({
+    required Widget? icon,
     required VoidCallback? onPressed,
     bool enabled = true,
-    super.autofocus = false,
     VoidCallback? onLongPress,
+    super.autofocus = false,
     super.onHover,
     super.onFocusChange,
     super.style,
@@ -274,106 +173,33 @@ class UiIconButton extends ButtonStyleButton {
     super.statesController,
     super.isSemanticButton,
     super.key,
-  }) : super(
+  })  : variant = IconButtonVariant.standard,
+        super(
+          child: icon,
           onPressed: enabled ? onPressed : null,
           onLongPress: enabled ? onLongPress : null,
         );
 
-  factory UiIconButton.filled({
-    required Widget icon,
+  const UiIconButton.outlined({
+    required Widget? icon,
     required VoidCallback? onPressed,
     bool enabled = true,
-    bool autofocus = false,
     VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
-    Key? key,
-  }) =>
-      UiIconButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: IconButtonVariant.filled,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: icon,
-      );
-
-  factory UiIconButton.outlined({
-    required Widget icon,
-    required VoidCallback? onPressed,
-    bool enabled = true,
-    bool autofocus = false,
-    VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
-    Key? key,
-  }) =>
-      UiIconButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: IconButtonVariant.outlined,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: icon,
-      );
-
-  factory UiIconButton.standard({
-    required Widget icon,
-    required VoidCallback? onPressed,
-    bool enabled = true,
-    bool autofocus = false,
-    VoidCallback? onLongPress,
-    ValueChanged<bool>? onFocusChange,
-    ValueChanged<bool>? onHover,
-    ButtonStyle? style,
-    FocusNode? focusNode,
-    Clip clipBehavior = Clip.none,
-    WidgetStatesController? statesController,
-    bool isSemanticButton = true,
-    Key? key,
-  }) =>
-      UiIconButton._(
-        onPressed: onPressed,
-        enabled: enabled,
-        autofocus: autofocus,
-        onLongPress: onLongPress,
-        onFocusChange: onFocusChange,
-        onHover: onHover,
-        style: style,
-        focusNode: focusNode,
-        clipBehavior: clipBehavior,
-        key: key,
-        variant: IconButtonVariant.standard,
-        statesController: statesController,
-        isSemanticButton: isSemanticButton,
-        child: icon,
-      );
+    super.autofocus = false,
+    super.onHover,
+    super.onFocusChange,
+    super.style,
+    super.focusNode,
+    super.clipBehavior,
+    super.statesController,
+    super.isSemanticButton,
+    super.key,
+  })  : variant = IconButtonVariant.outlined,
+        super(
+          child: icon,
+          onPressed: enabled ? onPressed : null,
+          onLongPress: enabled ? onLongPress : null,
+        );
 
   final IconButtonVariant variant;
 
@@ -384,23 +210,16 @@ class UiIconButton extends ButtonStyleButton {
     final colorPalette = theme.colorPalette;
     final typography = theme.appTypography;
 
-    switch (variant) {
-      case IconButtonVariant.filled:
-        return _IconButtonFilledStyle(
+    return switch (variant) {
+      IconButtonVariant.standard => _IconButtonStandardStyle(
           colorPalette: colorPalette,
           typography: typography,
-        );
-      case IconButtonVariant.outlined:
-        return _IconButtonOutlinedStyle(
+        ),
+      IconButtonVariant.outlined => _IconButtonOutlinedStyle(
           colorPalette: colorPalette,
           typography: typography,
-        );
-      case IconButtonVariant.standard:
-        return _IconButtonBaseStyle(
-          colorPalette: colorPalette,
-          typography: typography,
-        );
-    }
+        ),
+    };
   }
 
   @override
@@ -491,17 +310,18 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.foreground.withOpacity(0.38);
+            return switch (variant) {
+              FilledButtonVariant.primary => colorPalette.primary.withOpacity(.38),
+              FilledButtonVariant.secondary => colorPalette.secondary.withOpacity(.38),
+              FilledButtonVariant.destructive => colorPalette.destructive.withOpacity(.38),
+            };
           }
 
-          switch (variant) {
-            case FilledButtonVariant.primary:
-              return colorPalette.primaryForeground;
-            case FilledButtonVariant.secondary:
-              return colorPalette.secondaryForeground;
-            case FilledButtonVariant.destructive:
-              return colorPalette.destructiveForeground;
-          }
+          return switch (variant) {
+            FilledButtonVariant.primary => colorPalette.primaryForeground,
+            FilledButtonVariant.secondary => colorPalette.secondaryForeground,
+            FilledButtonVariant.destructive => colorPalette.destructiveForeground,
+          };
         },
       );
 
@@ -509,32 +329,40 @@ class _FilledButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.foreground.withOpacity(.12);
+            return switch (variant) {
+              FilledButtonVariant.primary => colorPalette.primary.withOpacity(.12),
+              FilledButtonVariant.secondary => colorPalette.secondary.withOpacity(.12),
+              FilledButtonVariant.destructive => colorPalette.destructive.withOpacity(.12),
+            };
           }
 
-          switch (variant) {
-            case FilledButtonVariant.primary:
-              return colorPalette.primary;
-            case FilledButtonVariant.secondary:
-              return colorPalette.secondary;
-            case FilledButtonVariant.destructive:
-              return colorPalette.destructiveForeground;
-          }
+          return switch (variant) {
+            FilledButtonVariant.primary => colorPalette.primary,
+            FilledButtonVariant.secondary => colorPalette.secondary,
+            FilledButtonVariant.destructive => colorPalette.destructive,
+          };
         },
       );
 
   @override
   WidgetStateProperty<Color?>? get overlayColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        final color = switch (variant) {
+          FilledButtonVariant.primary => colorPalette.primaryForeground,
+          FilledButtonVariant.secondary => colorPalette.secondaryForeground,
+          FilledButtonVariant.destructive => colorPalette.destructiveForeground,
+        };
+
         if (states.contains(WidgetState.pressed)) {
-          return colorPalette.primaryForeground.withOpacity(0.1);
+          return color.withOpacity(0.1);
         }
         if (states.contains(WidgetState.hovered)) {
-          return colorPalette.primaryForeground.withOpacity(0.08);
+          return color.withOpacity(0.08);
         }
         if (states.contains(WidgetState.focused)) {
-          return colorPalette.primaryForeground.withOpacity(0.1);
+          return color.withOpacity(0.1);
         }
+
         return null;
       });
 
@@ -565,25 +393,16 @@ class _OutlinedButtonStyle extends _UiBaseButtonStyle {
   const _OutlinedButtonStyle({
     required super.colorPalette,
     required super.typography,
-    required this.variant,
   });
-
-  /// The variant of the button.
-  final OutlinedButtonVariant variant;
 
   @override
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.foreground.withOpacity(0.38);
+            return colorPalette.mutedForeground;
           }
 
-          switch (variant) {
-            case OutlinedButtonVariant.primary:
-              return colorPalette.primary;
-            case OutlinedButtonVariant.secondary:
-              return colorPalette.secondary;
-          }
+          return colorPalette.primary;
         },
       );
 
@@ -594,10 +413,7 @@ class _OutlinedButtonStyle extends _UiBaseButtonStyle {
   @override
   WidgetStateProperty<Color?>? get overlayColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-        final color = switch (variant) {
-          OutlinedButtonVariant.primary => colorPalette.primary,
-          OutlinedButtonVariant.secondary => colorPalette.secondary,
-        };
+        final color = colorPalette.primary;
 
         if (states.contains(WidgetState.pressed)) {
           return color.withOpacity(0.1);
@@ -616,45 +432,34 @@ class _OutlinedButtonStyle extends _UiBaseButtonStyle {
   WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return StadiumBorder(
+            return RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
               side: BorderSide(color: colorPalette.foreground.withOpacity(0.12), width: 1),
             );
           }
 
-          final color = switch (variant) {
-            OutlinedButtonVariant.primary => colorPalette.primary,
-            OutlinedButtonVariant.secondary => colorPalette.secondary,
-          };
-
-          return StadiumBorder(
-            side: BorderSide(color: color, width: 1),
+          return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(
+              color: colorPalette.border,
+              width: 1,
+            ),
           );
         },
       );
 }
 
-class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
-  const _IconButtonOutlinedStyle({
+class _IconButtonStandardStyle extends _IconButtonBaseStyle {
+  const _IconButtonStandardStyle({
     required super.colorPalette,
     required super.typography,
   });
 
   @override
-  WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
-        (Set<WidgetState> states) {
-          if (states.contains(WidgetState.disabled)) {
-            return Colors.transparent;
-          }
-
-          return Colors.transparent;
-        },
-      );
-
-  @override
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.foreground.withOpacity(0.38);
+            return colorPalette.muted;
           }
 
           return colorPalette.foreground;
@@ -667,9 +472,11 @@ class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
           if (states.contains(WidgetState.pressed)) {
             return colorPalette.foreground.withOpacity(0.1);
           }
+
           if (states.contains(WidgetState.hovered)) {
             return colorPalette.foreground.withOpacity(0.08);
           }
+
           if (states.contains(WidgetState.focused)) {
             return colorPalette.foreground.withOpacity(0.1);
           }
@@ -677,35 +484,31 @@ class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
           return null;
         },
       );
-
-  @override
-  WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStatePropertyAll(
-        StadiumBorder(
-          side: BorderSide(
-            color: colorPalette.border,
-            width: 1,
-          ),
-        ),
-      );
 }
 
-class _IconButtonFilledStyle extends _IconButtonBaseStyle {
-  const _IconButtonFilledStyle({
+class _IconButtonOutlinedStyle extends _IconButtonBaseStyle {
+  const _IconButtonOutlinedStyle({
     required super.colorPalette,
     required super.typography,
   });
 
   @override
-  WidgetStateProperty<Color?>? get backgroundColor => WidgetStateProperty.resolveWith(
+  WidgetStateProperty<OutlinedBorder?>? get shape => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.foreground.withOpacity(0.12);
-          }
-          if (states.contains(WidgetState.selected)) {
-            return colorPalette.primary;
+            return RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+              side: BorderSide(color: colorPalette.mutedForeground.withOpacity(0.12), width: 1),
+            );
           }
 
-          return colorPalette.primary;
+          return RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(
+              color: colorPalette.border,
+              width: 1,
+            ),
+          );
         },
       );
 
@@ -713,13 +516,10 @@ class _IconButtonFilledStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get foregroundColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorPalette.foreground.withOpacity(0.38);
-          }
-          if (states.contains(WidgetState.selected)) {
-            return colorPalette.primaryForeground;
+            return colorPalette.muted;
           }
 
-          return colorPalette.primaryForeground;
+          return colorPalette.foreground;
         },
       );
 
@@ -727,13 +527,15 @@ class _IconButtonFilledStyle extends _IconButtonBaseStyle {
   WidgetStateProperty<Color?>? get overlayColor => WidgetStateProperty.resolveWith(
         (Set<WidgetState> states) {
           if (states.contains(WidgetState.pressed)) {
-            return colorPalette.primaryForeground.withOpacity(0.1);
+            return colorPalette.foreground.withOpacity(0.1);
           }
+
           if (states.contains(WidgetState.hovered)) {
-            return colorPalette.primaryForeground.withOpacity(0.08);
+            return colorPalette.foreground.withOpacity(0.08);
           }
+
           if (states.contains(WidgetState.focused)) {
-            return colorPalette.primaryForeground.withOpacity(0.1);
+            return colorPalette.foreground.withOpacity(0.1);
           }
 
           return null;
@@ -782,7 +584,7 @@ class _IconButtonBaseStyle extends _UiBaseButtonStyle {
       const WidgetStatePropertyAll<EdgeInsetsGeometry>(EdgeInsets.all(8.0));
 
   @override
-  WidgetStateProperty<Size>? get minimumSize => const WidgetStatePropertyAll<Size>(Size.square(40));
+  WidgetStateProperty<Size>? get minimumSize => const WidgetStatePropertyAll<Size>(Size.square(48));
 
   @override
   WidgetStateProperty<double>? get iconSize => const WidgetStatePropertyAll<double>(24.0);
@@ -866,7 +668,7 @@ class _UiBaseButtonStyle extends ButtonStyle {
   WidgetStateProperty<Size?>? get maximumSize => const WidgetStatePropertyAll(Size.infinite);
 
   @override
-  WidgetStateProperty<TextStyle?>? get textStyle => WidgetStatePropertyAll(typography.labelLarge);
+  WidgetStateProperty<TextStyle?>? get textStyle => WidgetStatePropertyAll(typography.bodyMedium);
 
   @override
   WidgetStateProperty<Color>? get shadowColor =>
