@@ -1,11 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-enum UiTextInputVariant { outlined }
+enum UiTextInputVariant { standard }
 
 class UiTextField extends StatefulWidget {
-  const UiTextField({
-    required this.variant,
+  const UiTextField.standard({
     this.controller,
     this.focusNode,
     this.style,
@@ -18,55 +17,14 @@ class UiTextField extends StatefulWidget {
     this.onEditingComplete,
     this.textInputAction,
     this.selectionControls,
+    this.maxLengthEnforcement,
     this.textCapitalization = TextCapitalization.none,
     this.autofocus = false,
     this.expands = false,
     this.obscureText = false,
     this.showCounter = false,
     super.key,
-  });
-
-  factory UiTextField.outlined({
-    UiTextFieldStyle? style,
-    TextEditingController? controller,
-    List<TextInputFormatter>? inputFormatters,
-    FocusNode? focusNode,
-    bool? enabled,
-    TextInputType? keyboardType,
-    int? maxLength,
-    String? restorationId,
-    VoidCallback? onTap,
-    VoidCallback? onEditingComplete,
-    TextInputAction? textInputAction,
-    TextSelectionControls? selectionControls,
-    Key? key,
-    bool showCounter = false,
-    bool autofocus = false,
-    bool expands = false,
-    TextCapitalization textCapitalization = TextCapitalization.none,
-    bool obscureText = false,
-  }) =>
-      UiTextField(
-        variant: UiTextInputVariant.outlined,
-        controller: controller,
-        focusNode: focusNode,
-        style: style,
-        enabled: enabled,
-        autofocus: autofocus,
-        expands: expands,
-        inputFormatters: inputFormatters,
-        keyboardType: keyboardType,
-        textCapitalization: textCapitalization,
-        maxLength: maxLength,
-        obscureText: obscureText,
-        restorationId: restorationId,
-        onTap: onTap,
-        onEditingComplete: onEditingComplete,
-        textInputAction: textInputAction,
-        selectionControls: selectionControls,
-        showCounter: showCounter,
-        key: key,
-      );
+  }) : variant = UiTextInputVariant.standard;
 
   final UiTextFieldStyle? style;
   final TextEditingController? controller;
@@ -85,6 +43,7 @@ class UiTextField extends StatefulWidget {
   final VoidCallback? onEditingComplete;
   final TextInputAction? textInputAction;
   final TextSelectionControls? selectionControls;
+  final MaxLengthEnforcement? maxLengthEnforcement;
   final UiTextInputVariant variant;
 
   @override
@@ -99,7 +58,7 @@ class _UiTextFieldState extends State<UiTextField> {
     final typography = theme.appTypography;
 
     final variantStyle = switch (widget.variant) {
-      UiTextInputVariant.outlined => _OutlinedUiTextFieldStyle(
+      UiTextInputVariant.standard => _StandardUiTextFieldStyle(
           palette: palette,
           typography: typography,
         ),
@@ -121,11 +80,14 @@ class _UiTextFieldState extends State<UiTextField> {
       focusNode: widget.focusNode,
       autofocus: widget.autofocus,
       controller: widget.controller,
+      maxLengthEnforcement: widget.maxLengthEnforcement,
       textInputAction: widget.textInputAction,
       selectionControls: widget.selectionControls,
       cursorColor: style.cursorColor,
       style: style.textStyle,
       decoration: style,
+      cursorWidth: style.cursorWidth,
+      cursorHeight: style.cursorHeight,
       buildCounter: (
         context, {
         required currentLength,
@@ -140,14 +102,14 @@ class _UiTextFieldState extends State<UiTextField> {
   }
 }
 
-class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
-  const _OutlinedUiTextFieldStyle({required this.palette, required this.typography});
+class _StandardUiTextFieldStyle extends UiTextFieldStyle {
+  const _StandardUiTextFieldStyle({required this.palette, required this.typography});
 
   final ColorPalette palette;
   final AppTypography typography;
 
   @override
-  TextStyle? get textStyle => typography.bodyLarge.copyWith(color: palette.foreground);
+  TextStyle? get textStyle => typography.bodyMedium.copyWith(color: palette.foreground);
 
   @override
   TextStyle? get counterStyle => typography.labelSmall.copyWith(color: palette.foreground);
@@ -159,56 +121,22 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
   TextStyle? get hintStyle => WidgetStateTextStyle.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return typography.bodyLarge.copyWith(color: palette.foreground.withOpacity(.38));
+            return typography.bodyMedium.copyWith(color: palette.foreground.withOpacity(.38));
           }
 
-          return typography.bodyLarge.copyWith(color: palette.foreground.withOpacity(.78));
+          return typography.bodyMedium.copyWith(color: palette.foreground.withOpacity(.58));
         },
       );
 
   @override
-  TextStyle? get helperStyle => typography.bodySmall.copyWith(color: palette.foreground);
-
-  @override
-  TextStyle? get labelStyle => WidgetStateTextStyle.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.disabled)) {
-            return typography.labelLarge.copyWith(color: palette.foreground.withOpacity(.38));
-          }
-
-          if (states.contains(WidgetState.error)) {
-            return typography.bodyLarge.copyWith(color: palette.destructive);
-          }
-
-          if (states.contains(WidgetState.focused)) {
-            return typography.bodyLarge.copyWith(color: palette.destructive);
-          }
-
-          return typography.bodyLarge.copyWith(color: palette.foreground.withOpacity(.78));
-        },
-      );
-
-  @override
-  TextStyle? get floatingLabelStyle => WidgetStateTextStyle.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.error)) {
-            return typography.labelLarge.copyWith(color: palette.destructive);
-          }
-
-          if (states.contains(WidgetState.focused)) {
-            return typography.labelLarge.copyWith(color: palette.primary);
-          }
-
-          return typography.labelLarge.copyWith(color: palette.foreground.withOpacity(.76));
-        },
-      );
+  TextStyle? get helperStyle => typography.bodySmall.copyWith(color: palette.foreground.withOpacity(.58));
 
   @override
   InputBorder? get focusedBorder => OutlineInputBorder(
         borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.primary,
-          width: 2,
+          width: 1,
         ),
       );
 
@@ -217,7 +145,7 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
         borderRadius: BorderRadius.circular(6),
         borderSide: BorderSide(
           color: palette.destructive,
-          width: 2,
+          width: 1,
         ),
       );
 
@@ -244,6 +172,18 @@ class _OutlinedUiTextFieldStyle extends UiTextFieldStyle {
           color: palette.foreground.withOpacity(.08),
         ),
       );
+
+  @override
+  EdgeInsetsGeometry? get contentPadding => const EdgeInsets.symmetric(horizontal: 12, vertical: 12);
+
+  @override
+  BoxConstraints? get constraints => const BoxConstraints(minHeight: 24);
+
+  @override
+  Color? get cursorColor => palette.primary;
+
+  @override
+  bool? get isDense => true;
 }
 
 class UiTextFieldStyle extends InputDecoration {
@@ -303,6 +243,8 @@ class UiTextFieldStyle extends InputDecoration {
     super.constraints,
     this.textStyle,
     this.cursorColor,
+    this.cursorWidth = 1,
+    this.cursorHeight,
   });
 
   /// The style to use for the text being edited.
@@ -310,6 +252,12 @@ class UiTextFieldStyle extends InputDecoration {
 
   /// The color to use for the cursor.
   final Color? cursorColor;
+
+  /// The width of the cursor.
+  final double cursorWidth;
+
+  /// The height of the cursor.
+  final double? cursorHeight;
 
   /// Merge two [UiTextFieldStyle] objects.
   ///
@@ -373,6 +321,8 @@ class UiTextFieldStyle extends InputDecoration {
       constraints: other.constraints ?? constraints,
       textStyle: other.textStyle ?? textStyle,
       cursorColor: other.cursorColor ?? cursorColor,
+      cursorWidth: cursorWidth,
+      cursorHeight: other.cursorHeight ?? cursorHeight,
     );
   }
 }

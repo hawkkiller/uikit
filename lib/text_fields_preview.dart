@@ -9,60 +9,44 @@ class TextFieldsPreview extends StatefulWidget {
 
 class _TextFieldsPreviewState extends State<TextFieldsPreview> {
   @override
-  Widget build(BuildContext context) => UiCard(
+  Widget build(BuildContext context) => const UiCard(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: SizedBox(
             width: 200,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                UiTextField.outlined(
-                  style: const UiTextFieldStyle(hintText: 'Hint'),
+                UiTextField.standard(
+                  style: UiTextFieldStyle(
+                    hintText: 'Text input',
+                  ),
                 ),
-                const SizedBox(height: 16),
-                UiTextField.outlined(
-                  style: const UiTextFieldStyle(
-                    hintText: 'With helper',
+                SizedBox(height: 16),
+                UiTextField.standard(
+                  style: UiTextFieldStyle(
+                    hintText: 'Text input',
                     helperText: 'Helper',
                   ),
                 ),
-                const SizedBox(height: 16),
-                UiTextField.outlined(
-                  style: const UiTextFieldStyle(
-                    hintText: 'With error',
+                SizedBox(height: 16),
+                UiTextField.standard(
+                  style: UiTextFieldStyle(
+                    hintText: 'Text input',
                     errorText: 'Error',
                   ),
                 ),
-                const SizedBox(height: 16),
-                UiTextField.outlined(
+                SizedBox(height: 16),
+                UiTextField.standard(
                   showCounter: true,
-                  maxLength: 500,
-                  style: const UiTextFieldStyle(hintText: 'With counter'),
+                  maxLength: 10,
+                  style: UiTextFieldStyle(hintText: 'Text input'),
                 ),
-                const SizedBox(height: 16),
-                UiTextField.outlined(
-                  showCounter: true,
-                  maxLength: 500,
-                  style: const UiTextFieldStyle(
-                    hintText: 'With counter and helper',
-                    helperText: 'Helper',
-                  ),
-                ),
-                const SizedBox(height: 16),
-                UiTextField.outlined(
-                  showCounter: true,
-                  maxLength: 500,
-                  style: const UiTextFieldStyle(
-                    labelText: 'With label',
-                  ),
-                ),
-                const SizedBox(height: 16),
-                UiTextField.outlined(
+                SizedBox(height: 16),
+                UiTextField.standard(
                   showCounter: true,
                   enabled: false,
-                  maxLength: 500,
-                  style: const UiTextFieldStyle(
+                  style: UiTextFieldStyle(
                     hintText: 'Disabled',
                   ),
                 ),
