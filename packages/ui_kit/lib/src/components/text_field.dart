@@ -112,7 +112,7 @@ class _StandardUiTextFieldStyle extends UiTextFieldStyle {
   TextStyle? get textStyle => typography.bodyMedium.copyWith(color: palette.foreground);
 
   @override
-  TextStyle? get counterStyle => typography.labelSmall.copyWith(color: palette.foreground);
+  TextStyle? get counterStyle => typography.labelSmall.copyWith(color: palette.foreground.withOpacity(.58));
 
   @override
   TextStyle? get errorStyle => typography.bodySmall.copyWith(color: palette.destructive);
@@ -177,7 +177,7 @@ class _StandardUiTextFieldStyle extends UiTextFieldStyle {
   EdgeInsetsGeometry? get contentPadding => const EdgeInsets.symmetric(horizontal: 12, vertical: 12);
 
   @override
-  BoxConstraints? get constraints => const BoxConstraints(minHeight: 24);
+  BoxConstraints? get constraints => const BoxConstraints(minHeight: 32);
 
   @override
   Color? get cursorColor => palette.primary;
