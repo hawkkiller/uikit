@@ -37,12 +37,12 @@ class _TextButton extends StatelessWidget {
           children: [
             UiText.titleSmall('Text Button'),
             const SizedBox(height: 16),
-            UiTextButton(
+            UiButton.text(
               onPressed: () {},
               label: const Text('standard'),
             ),
             const SizedBox(height: 8),
-            UiTextButton(
+            UiButton.text(
               onPressed: () {},
               label: const Text('disabled'),
               enabled: false,
@@ -62,23 +62,23 @@ class _IconButtons extends StatelessWidget {
           children: [
             UiText.titleSmall('Icon Buttons'),
             const SizedBox(height: 16),
-            UiIconButton.standard(
+            UiButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
             ),
             const SizedBox(height: 8),
-            UiIconButton.standard(
+            UiButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
             ),
             const SizedBox(height: 8),
-            UiIconButton.outlined(
+            UiButton.iconOutlined(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
             ),
             const SizedBox(height: 8),
-            UiIconButton.outlined(
+            UiButton.iconOutlined(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
@@ -99,31 +99,31 @@ class _OutlinedButton extends StatelessWidget {
           children: [
             UiText.titleSmall('Outlined Button'),
             const SizedBox(height: 16),
-            UiOutlinedButton(
+            UiButton.outlined(
               onPressed: () {},
               label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton(
+            UiButton.outlined(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
               label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton(
+            UiButton.outlined(
               onPressed: () {},
               enabled: false,
               label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton(
+            UiButton.outlined(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
               label: const Text('Outlined'),
             ),
             const SizedBox(height: 8),
-            UiOutlinedButton(
+            UiButton.outlined(
               onPressed: () {},
               enabled: false,
               label: SizedBox.square(
@@ -150,31 +150,31 @@ class _FilledSecondaryButton extends StatelessWidget {
           children: [
             UiText.titleSmall('Filled Secondary Button'),
             const SizedBox(height: 16),
-            UiFilledButton.secondary(
+            UiButton.filledSecondary(
               onPressed: () {},
               label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.secondary(
+            UiButton.filledSecondary(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
               label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.secondary(
+            UiButton.filledSecondary(
               onPressed: () {},
               enabled: false,
               label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.secondary(
+            UiButton.filledSecondary(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
               label: const Text('Secondary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.secondary(
+            UiButton.filledSecondary(
               onPressed: () {},
               enabled: false,
               label: SizedBox.square(
@@ -201,31 +201,31 @@ class _FilledPrimaryButton extends StatelessWidget {
           children: [
             UiText.titleSmall('Filled Primary Button'),
             const SizedBox(height: 16),
-            UiFilledButton.primary(
+            UiButton.filledPrimary(
               onPressed: () {},
               label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.primary(
+            UiButton.filledPrimary(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
               label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.primary(
+            UiButton.filledPrimary(
               onPressed: () {},
               enabled: false,
               label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.primary(
+            UiButton.filledPrimary(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
               label: const Text('Primary'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.primary(
+            UiButton.filledPrimary(
               onPressed: () {},
               enabled: false,
               label: SizedBox.square(
@@ -252,31 +252,31 @@ class _FilledDestructiveButton extends StatelessWidget {
           children: [
             UiText.titleSmall('Filled Destructive Button'),
             const SizedBox(height: 16),
-            UiFilledButton.destructive(
+            UiButton.filledDestructive(
               onPressed: () {},
               label: const Text('Destructive'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.destructive(
+            UiButton.filledDestructive(
               icon: const Icon(Icons.add_rounded),
               onPressed: () {},
               label: const Text('Destructive'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.destructive(
+            UiButton.filledDestructive(
               onPressed: () {},
               enabled: false,
               label: const Text('Destructive'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.destructive(
+            UiButton.filledDestructive(
               onPressed: () {},
               icon: const Icon(Icons.add_rounded),
               enabled: false,
               label: const Text('Destructive'),
             ),
             const SizedBox(height: 8),
-            UiFilledButton.destructive(
+            UiButton.filledDestructive(
               onPressed: () {},
               enabled: false,
               label: SizedBox.square(

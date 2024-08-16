@@ -64,13 +64,12 @@ class UiPreview extends StatelessWidget {
             surfaceTintColor: Theme.of(context).colorPalette.background,
             pinned: true,
             actions: [
-              UiIconButton.standard(
+              UiButton.icon(
                 icon: brightness == Brightness.light
                     ? const Icon(Icons.dark_mode_rounded)
                     : const Icon(Icons.light_mode_rounded),
                 onPressed: () {
-                  themeModeSwitcher.value =
-                      brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light;
+                  themeModeSwitcher.value = brightness == Brightness.light ? ThemeMode.dark : ThemeMode.light;
                 },
               ),
             ],
