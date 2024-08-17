@@ -36,7 +36,7 @@ ThemeData createThemeData({
 
 ColorPalette generatePaletteForBrightness(Brightness brightness) {
   final materialPalette = ColorScheme.fromSeed(
-    seedColor: const Color.fromARGB(255, 60, 139, 250),
+    seedColor: Colors.transparent,
     dynamicSchemeVariant: DynamicSchemeVariant.monochrome,
     brightness: brightness,
   );
