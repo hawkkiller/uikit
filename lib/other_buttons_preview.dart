@@ -41,6 +41,30 @@ class OtherButtonsPreview extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  UiCheckbox(
+                    value: true,
+                    onChanged: (value) {},
+                  ),
+                  const SizedBox(width: 8),
+                  UiCheckbox(
+                    value: false,
+                    onChanged: (value) {},
+                  ),
+                  const SizedBox(width: 8),
+                  const UiCheckbox(
+                    value: true,
+                    onChanged: null,
+                  ),
+                  const SizedBox(width: 8),
+                  const UiCheckbox(
+                    value: false,
+                    onChanged: null,
+                  ),
+                ],
+              ),
             ],
           ),
         ),
