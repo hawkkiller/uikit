@@ -331,12 +331,25 @@ class UiText extends StatelessWidget {
         key: key,
       );
 
+  /// The text to display.
   final String data;
+
+  /// The style to apply to the text.
   final TextStyle? style;
+
+  /// The alignment of the text.
   final TextAlign? textAlign;
+
+  /// The overflow behavior of the text.
   final TextOverflow? overflow;
+
+  /// The maximum number of lines to display.
   final int? maxLines;
+
+  /// The color of the text.
   final Color? color;
+
+  /// A function that builds the text style based on the typography.
   final TextStyle? Function(AppTypography)? _styleBuilder;
 
   @override
