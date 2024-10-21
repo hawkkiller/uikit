@@ -1,18 +1,21 @@
+import 'package:ui_kit/src/components/surface.dart';
 import 'package:ui_kit/ui_kit.dart';
 
-/// Card widget from the UIKit package.
+/// {@template ui_card}
+/// A widget that displays a card with project style.
+/// {@endtemplate}
 class UiCard extends StatelessWidget {
+  /// {@macro ui_card}
   const UiCard({
     required this.child,
-    this.semanticContainer = true,
+    super.key,
     this.color,
     this.margin,
-    super.key,
   });
 
   /// The color to paint the card.
   ///
-  /// If null, defaults to [ColorPalette.surface]
+  /// If null, defaults to [ColorPalette.background]
   final Color? color;
 
   /// The empty space that surrounds the card.
@@ -21,20 +24,10 @@ class UiCard extends StatelessWidget {
   ///
   /// If this property is null then 4.0 logical pixels of padding is added to
   /// all sides.
+  /// 
+  /// This is useful for cases when the card is used in limited space and
+  /// its shadow may be clipped.
   final EdgeInsetsGeometry? margin;
-
-  /// Whether this widget represents a single semantic container, or if false
-  /// a collection of individual semantic nodes.
-  ///
-  /// Defaults to true.
-  ///
-  /// Setting this flag to true will attempt to merge all child semantics into
-  /// this node. Setting this flag to false will force all child semantic nodes
-  /// to be explicit.
-  ///
-  /// This flag should be false if the card contains multiple different types
-  /// of content.
-  final bool semanticContainer;
 
   /// The widget below this widget in the tree.
   final Widget child;
@@ -42,11 +35,9 @@ class UiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: margin ?? const EdgeInsets.all(4),
-        child: Material(
-          type: MaterialType.card,
-          elevation: 1,
-          color: color ?? Theme.of(context).colorPalette.background,
-          shadowColor: Theme.of(context).colorPalette.foreground.withOpacity(.20),
+        child: Surface(
+          color: color,
+          elevation: 3,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
