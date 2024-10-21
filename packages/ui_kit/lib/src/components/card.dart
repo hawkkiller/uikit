@@ -1,4 +1,3 @@
-import 'package:ui_kit/src/components/surface.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 /// {@template ui_card}
