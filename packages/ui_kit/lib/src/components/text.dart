@@ -3,7 +3,7 @@ import 'package:ui_kit/ui_kit.dart';
 // UiText widget to handle different text styles and sizes
 class UiText extends StatelessWidget {
   const UiText._(
-    this.content, {
+    this.data, {
     this.color,
     this.style,
     this.textAlign,
@@ -14,7 +14,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a large display size.
   factory UiText.displayLarge(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -22,7 +22,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -33,7 +33,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a medium display size.
   factory UiText.displayMedium(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -41,7 +41,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -52,7 +52,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a small display size.
   factory UiText.displaySmall(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -60,7 +60,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -71,7 +71,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a large headline size.
   factory UiText.headlineLarge(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -79,7 +79,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -90,7 +90,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a medium headline size.
   factory UiText.headlineMedium(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -98,7 +98,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -109,7 +109,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a small headline size.
   factory UiText.headlineSmall(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -117,7 +117,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -128,7 +128,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a large title size.
   factory UiText.titleLarge(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -136,7 +136,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -147,7 +147,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a medium title size.
   factory UiText.titleMedium(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -155,7 +155,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -166,7 +166,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a small title size.
   factory UiText.titleSmall(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -174,7 +174,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -185,7 +185,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a large body size.
   factory UiText.bodyLarge(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -193,7 +193,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -204,7 +204,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a medium body size.
   factory UiText.bodyMedium(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -212,7 +212,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -223,7 +223,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a small body size.
   factory UiText.bodySmall(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -231,7 +231,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -242,7 +242,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a large label size.
   factory UiText.labelLarge(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -250,7 +250,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -261,7 +261,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a medium label size.
   factory UiText.labelMedium(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -269,7 +269,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -280,7 +280,7 @@ class UiText extends StatelessWidget {
 
   /// Creates a [UiText] widget with a small label size.
   factory UiText.labelSmall(
-    String content, {
+    String data, {
     Color? color,
     TextStyle? style,
     TextAlign? textAlign,
@@ -288,7 +288,7 @@ class UiText extends StatelessWidget {
     int? maxLines,
   }) =>
       UiText._(
-        content,
+        data,
         color: color,
         style: style,
         textAlign: textAlign,
@@ -297,7 +297,7 @@ class UiText extends StatelessWidget {
         styleBuilder: (typography) => typography.labelSmall,
       );
 
-  final String content;
+  final String data;
   final TextStyle? style;
   final TextAlign? textAlign;
   final TextOverflow? overflow;
@@ -314,7 +314,7 @@ class UiText extends StatelessWidget {
     final style = _styleBuilder?.call(typography) ?? typography.bodyLarge;
 
     return Text(
-      content,
+      data,
       textAlign: textAlign,
       overflow: overflow,
       maxLines: maxLines,
