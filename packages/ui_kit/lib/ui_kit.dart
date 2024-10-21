@@ -9,6 +9,7 @@ export 'src/animations/animations.dart';
 /* Components */
 export 'src/components/button.dart';
 export 'src/components/card.dart';
+export 'src/components/radio.dart';
 export 'src/components/surface.dart';
 export 'src/components/text.dart';
 export 'src/components/text_field.dart';
