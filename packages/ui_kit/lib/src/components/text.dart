@@ -1,8 +1,11 @@
 import 'package:ui_kit/ui_kit.dart';
 
-// UiText widget to handle different text styles and sizes
+/// {@template ui_text}
+/// A widget that displays a string of text with a specific style.
+/// {@endtemplate}
 class UiText extends StatelessWidget {
-  const UiText._(
+  /// {@macro ui_text}
+  const UiText(
     this.data, {
     this.color,
     this.style,
@@ -10,6 +13,7 @@ class UiText extends StatelessWidget {
     this.overflow,
     this.maxLines,
     TextStyle? Function(AppTypography)? styleBuilder,
+    super.key,
   }) : _styleBuilder = styleBuilder;
 
   /// Creates a [UiText] widget with a large display size.
@@ -20,8 +24,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -29,6 +34,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.displayLarge,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a medium display size.
@@ -39,8 +45,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -48,6 +55,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.displayMedium,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a small display size.
@@ -58,8 +66,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -67,6 +76,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.displaySmall,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a large headline size.
@@ -77,8 +87,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -86,6 +97,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.headlineLarge,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a medium headline size.
@@ -96,8 +108,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -105,6 +118,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.headlineMedium,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a small headline size.
@@ -115,8 +129,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -124,6 +139,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.headlineSmall,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a large title size.
@@ -134,8 +150,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -143,6 +160,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.titleLarge,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a medium title size.
@@ -153,8 +171,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -162,6 +181,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.titleMedium,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a small title size.
@@ -172,8 +192,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -181,6 +202,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.titleSmall,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a large body size.
@@ -191,8 +213,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -200,6 +223,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.bodyLarge,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a medium body size.
@@ -210,8 +234,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -219,6 +244,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.bodyMedium,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a small body size.
@@ -229,8 +255,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -238,6 +265,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.bodySmall,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a large label size.
@@ -248,8 +276,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -257,6 +286,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.labelLarge,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a medium label size.
@@ -267,8 +297,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -276,6 +307,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.labelMedium,
+        key: key,
       );
 
   /// Creates a [UiText] widget with a small label size.
@@ -286,8 +318,9 @@ class UiText extends StatelessWidget {
     TextAlign? textAlign,
     TextOverflow? overflow,
     int? maxLines,
+    Key? key,
   }) =>
-      UiText._(
+      UiText(
         data,
         color: color,
         style: style,
@@ -295,6 +328,7 @@ class UiText extends StatelessWidget {
         overflow: overflow,
         maxLines: maxLines,
         styleBuilder: (typography) => typography.labelSmall,
+        key: key,
       );
 
   final String data;
